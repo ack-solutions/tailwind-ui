@@ -5,6 +5,7 @@ import { Button, type ButtonProps } from "./button";
 const meta: Meta<ButtonProps> = {
   title: "Components/Button",
   component: Button as any,
+  tags: ["autodocs"],
   parameters: {
     layout: "centered",
     docs: { description: { component: "Polymorphic Button with variants and slots." } },
@@ -18,6 +19,11 @@ const meta: Meta<ButtonProps> = {
       control: { type: "select" },
       options: ["sm", "md", "lg"],
     },
+    color: {
+      control: { type: "select" },
+      options: ["brand", "primary", "secondary", "success", "warning", "error", "info"],
+      description: "Semantic color palette",
+    },
     fullWidth: { control: { type: "boolean" } },
     as: { control: { type: "text" } },
     className: { control: { type: "text" } },
@@ -29,6 +35,7 @@ const meta: Meta<ButtonProps> = {
     children: "Button",
     intent: "solid",
     size: "md",
+    color: "primary",
     fullWidth: false,
   },
 };
@@ -55,6 +62,19 @@ export const Sizes: Story = {
       <Button {...args} size="sm">Small</Button>
       <Button {...args} size="md">Medium</Button>
       <Button {...args} size="lg">Large</Button>
+    </div>
+  ),
+};
+
+export const Colors: Story = {
+  render: (args) => (
+    <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+      <Button {...args} color="primary">Primary</Button>
+      <Button {...args} color="secondary">Secondary</Button>
+      <Button {...args} color="success">Success</Button>
+      <Button {...args} color="warning">Warning</Button>
+      <Button {...args} color="error">Error</Button>
+      <Button {...args} color="info">Info</Button>
     </div>
   ),
 };
@@ -113,4 +133,3 @@ export const Loading: Story = {
     </Button>
   ),
 };
-

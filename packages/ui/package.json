@@ -42,6 +42,16 @@
       "import": "./dist/button.mjs",
       "require": "./dist/button.cjs"
     },
+    "./badge": {
+      "types": "./dist/badge.d.ts",
+      "import": "./dist/badge.mjs",
+      "require": "./dist/badge.cjs"
+    },
+    "./alert": {
+      "types": "./dist/alert.d.ts",
+      "import": "./dist/alert.mjs",
+      "require": "./dist/alert.cjs"
+    },
     "./theme/ThemeProvider": {
       "types": "./dist/theme/ThemeProvider.d.ts",
       "import": "./dist/theme/ThemeProvider.mjs",

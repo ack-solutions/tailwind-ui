@@ -4,6 +4,8 @@ export default defineConfig({
   entry: {
     index: "src/index.ts",
     button: "src/button.tsx",
+    badge: "src/badge.tsx",
+    alert: "src/alert.tsx",
     "theme/ThemeProvider": "src/theme/ThemeProvider.tsx",
   },
   format: ["esm", "cjs"],

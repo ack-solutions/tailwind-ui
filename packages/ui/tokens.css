@@ -19,9 +19,17 @@
   --ack-muted: oklch(0.55 0 0);
   --ack-border: oklch(0.86 0 0);
 
-  /* Brand & Accent (used for tokens) */
-  --ack-brand: oklch(0.64 0.16 252);         /* blue-ish */
-  --ack-accent: oklch(0.64 0.18 300);        /* violet-ish */
+  /* Semantic palette */
+  --ack-primary: oklch(0.64 0.16 252);       /* blue */
+  --ack-secondary: oklch(0.62 0.18 320);     /* purple */
+  --ack-success: oklch(0.70 0.16 150);       /* green */
+  --ack-warning: oklch(0.85 0.18 85);        /* amber */
+  --ack-error: oklch(0.62 0.20 20);          /* red */
+  --ack-info: oklch(0.72 0.14 220);          /* cyan */
+
+  /* Brand & Accent (aliases for components) */
+  --ack-brand: var(--ack-primary);
+  --ack-accent: var(--ack-secondary);
 
   /* Buttons (defaults can alias brand) */
   --ack-btn-bg: var(--ack-brand);
@@ -36,8 +44,15 @@
   --ack-muted: oklch(0.72 0 0);
   --ack-border: oklch(0.35 0 0);
 
-  --ack-brand: oklch(0.70 0.12 255);         /* brighten in dark */
-  --ack-accent: oklch(0.72 0.14 300);
+  --ack-primary: oklch(0.72 0.12 255);       /* brighten in dark */
+  --ack-secondary: oklch(0.74 0.12 320);
+  --ack-success: oklch(0.76 0.13 150);
+  --ack-warning: oklch(0.78 0.16 85);
+  --ack-error: oklch(0.68 0.15 20);
+  --ack-info: oklch(0.78 0.10 220);
+
+  --ack-brand: var(--ack-primary);
+  --ack-accent: var(--ack-secondary);
 
   --ack-btn-bg: var(--ack-brand);
   --ack-btn-fg: oklch(0.10 0 0);
@@ -48,6 +63,12 @@
   /* Colors */
   --color-brand: var(--ack-brand);
   --color-accent: var(--ack-accent);
+  --color-primary: var(--ack-primary);
+  --color-secondary: var(--ack-secondary);
+  --color-success: var(--ack-success);
+  --color-warning: var(--ack-warning);
+  --color-error: var(--ack-error);
+  --color-info: var(--ack-info);
   --color-surface: var(--ack-surface);
   --color-surface-2: var(--ack-surface-2);
   --color-text: var(--ack-text);

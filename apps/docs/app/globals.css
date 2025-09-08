@@ -1,3 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind CSS v4 entry */
+@import "tailwindcss";
+
+/* AckPlus UI tokens and base styles (v4-friendly) */
+@import "@ackplus/ui/tokens.css";
+@import "@ackplus/ui/styles.css";

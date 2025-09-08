@@ -1,6 +1,7 @@
 import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { cn } from "./lib/cn";
+import { PolymorphicComponentProps, PolymorphicRef } from "./lib/polymorphic";
 
 const buttonStyles = tv({
   slots: {
@@ -45,6 +46,14 @@ const buttonStyles = tv({
 
 export type ButtonIntent = "solid" | "outline" | "ghost" | "link";
 export type ButtonSize = "sm" | "md" | "lg";
+export type ButtonColor =
+  | "brand"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "warning"
+  | "error"
+  | "info";
 
 type ButtonVariants = VariantProps<typeof buttonStyles>;
 
@@ -60,25 +69,12 @@ export type ButtonSlotProps = {
   icon?: React.HTMLAttributes<HTMLSpanElement>;
 };
 
-// Polymorphic helpers
-type AsProp<E extends React.ElementType> = {
-  as?: E;
-};
-
-type PropsToOmit<E extends React.ElementType, P> = keyof (AsProp<E> & P);
-
-export type PolymorphicComponentProps<E extends React.ElementType, P> =
-  React.PropsWithChildren<P & AsProp<E>> &
-    Omit<React.ComponentPropsWithoutRef<E>, PropsToOmit<E, P>>;
-
-export type PolymorphicRef<E extends React.ElementType> =
-  React.ComponentPropsWithRef<E>["ref"];
-
 export interface ButtonOwnProps extends ButtonVariants {
   className?: string;
   icon?: React.ReactNode;
   slots?: ButtonSlots;
   slotProps?: ButtonSlotProps;
+  color?: ButtonColor; // semantic color; defaults to brand/primary
 }
 
 export type ButtonProps<E extends React.ElementType = "button"> =
@@ -93,6 +89,7 @@ const ButtonImpl = (
     size,
     fullWidth,
     icon,
+    color,
     slots,
     slotProps,
     ...rest
@@ -102,11 +99,19 @@ const ButtonImpl = (
   const Comp = (as || "button") as React.ElementType;
   const styles = buttonStyles({ intent, size, fullWidth });
 
-  const rootClass = cn(styles.root, slots?.root, className, slotProps?.root?.className);
-  const labelClass = cn(styles.label, slots?.label, slotProps?.label?.className);
-  const iconClass = cn(styles.icon, slots?.icon, slotProps?.icon?.className);
+  const rootClass = cn(styles.root(), slots?.root, className, slotProps?.root?.className);
+  const labelClass = cn(styles.label(), slots?.label, slotProps?.label?.className);
+  const iconClass = cn(styles.icon(), slots?.icon, slotProps?.icon?.className);
 
-  const rootProps = { ...slotProps?.root };
+  const brandOverride =
+    color && color !== "brand"
+      ? ({ ["--ack-brand" as any]: `var(--ack-${color})` } as React.CSSProperties)
+      : undefined;
+
+  const rootProps = {
+    ...slotProps?.root,
+    style: { ...(slotProps?.root as any)?.style, ...(brandOverride || {}) },
+  } as React.HTMLAttributes<HTMLElement>;
   const labelProps = { ...slotProps?.label };
   const iconProps = { ...slotProps?.icon };
 
