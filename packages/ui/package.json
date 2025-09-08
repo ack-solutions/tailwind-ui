@@ -18,7 +18,8 @@
     "typecheck": "tsc --noEmit",
     "test": "echo \"No tests\"",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build -o storybook-static"
+    "storybook:build": "storybook build -o storybook-static",
+    "build-storybook": "pnpm run storybook:build"
   },
   "peerDependencies": {
     "react": "*",
