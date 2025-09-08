@@ -1,0 +1,53 @@
+# ThemeProvider
+
+The `ThemeProvider` wraps its children without adding extra markup and can be used for theming context.
+
+## Props
+
+```ts
+interface ThemeProviderProps {
+  /**
+   * Elements to render within the provider.
+   */
+  children: React.ReactNode;
+}
+```
+
+## Examples
+
+### Basic
+
+```tsx
+import { ThemeProvider, Button } from "@ackplus/ui";
+
+export default function Example() {
+  return (
+    <ThemeProvider>
+      <Button>Save</Button>
+    </ThemeProvider>
+  );
+}
+```
+
+### Advanced
+
+```tsx
+import { ThemeProvider } from "@ackplus/ui";
+
+export default function NestedExample() {
+  return (
+    <ThemeProvider>
+      <section>
+        <p>Default theme</p>
+        <ThemeProvider>
+          <p>Nested provider content</p>
+        </ThemeProvider>
+      </section>
+    </ThemeProvider>
+  );
+}
+```
+
+## Accessibility
+
+The `ThemeProvider` does not render any DOM elements and has no direct accessibility concerns.
