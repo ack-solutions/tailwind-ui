@@ -1,0 +1,5 @@
+@import "./tokens.css";
+
+.button {
+  background-color: var(--color-primary);
+}
