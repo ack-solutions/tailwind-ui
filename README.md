@@ -45,8 +45,9 @@ Common scripts are available through pnpm:
 ## Contributing
 
 This repository uses `lint-staged`, `eslint`, and `prettier` to keep a consistent code style. Run `pnpm lint` and make sure your commits pass the pre-commit checks before submitting a pull request.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions and guidelines.
+
 
 ## License
 
 MIT License. For questions or feedback, open an issue or contact support@ack.plus.
-
