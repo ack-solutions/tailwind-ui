@@ -1,0 +1,3 @@
+{
+  "extends": "@ackplus/tsconfig/base.json"
+}
