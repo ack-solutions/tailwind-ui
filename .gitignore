@@ -7,3 +7,4 @@ coverage
 .turbo
 .next
 apps/docs/out
+storybook-static

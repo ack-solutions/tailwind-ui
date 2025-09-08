@@ -5,6 +5,7 @@
     "declaration": true,
     "emitDeclarationOnly": false,
     "outDir": "dist",
+    "moduleResolution": "Bundler",
     "types": ["react", "react-dom"],
     "jsx": "react"
   }

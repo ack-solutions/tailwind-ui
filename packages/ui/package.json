@@ -16,12 +16,19 @@
     "build": "tsup",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"No tests\""
+    "test": "echo \"No tests\"",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build -o storybook-static"
   },
   "peerDependencies": {
     "react": "*",
     "react-dom": "*",
     "tailwindcss": "^4"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.3",
+    "tailwind-variants": "^0.3.1"
   },
   "exports": {
     ".": {
@@ -45,6 +52,12 @@
   "devDependencies": {
     "@types/react": "^19.1.12",
     "@types/react-dom": "^19.1.9",
-    "tsup": "^8.5.0"
+    "tsup": "^8.5.0",
+    "@storybook/react": "^8.2.9",
+    "@storybook/react-vite": "^8.2.9",
+    "@storybook/addon-essentials": "^8.2.9",
+    "@storybook/addon-a11y": "^8.2.9",
+    "storybook": "^8.2.9",
+    "vite": "^5.4.10"
   }
 }

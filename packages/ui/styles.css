@@ -1,1 +1,53 @@
-/* Component styles placeholder */
+/*
+  Base component styles for @ackplus/ui using runtime vars.
+  No Tailwind imports here; the consumer imports Tailwind in their app.
+*/
+
+.ack-card {
+  background-color: var(--ack-surface);
+  color: var(--ack-text);
+  border: 1px solid var(--ack-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+}
+
+.ack-card + .ack-card {
+  margin-top: 1rem;
+}
+
+.ack-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.5rem;
+  padding-inline: 0.875rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--ack-border);
+  background-color: var(--ack-btn-bg);
+  color: var(--ack-btn-fg);
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow: var(--shadow-sm);
+  transition: filter 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+
+.ack-btn:hover {
+  filter: brightness(1.05);
+}
+
+.ack-btn:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-md);
+}
+
+.ack-btn--ghost {
+  background-color: transparent;
+  color: var(--ack-text);
+}
+
+.ack-muted {
+  color: var(--ack-muted);
+}
