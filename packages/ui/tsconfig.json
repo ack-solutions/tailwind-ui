@@ -1,4 +1,0 @@
-{
-  "extends": "@ackplus/tsconfig/base.json",
-  "include": ["src"]
-}
