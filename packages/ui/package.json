@@ -1,0 +1,50 @@
+{
+  "name": "@ackplus/ui",
+  "version": "0.0.0",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "tokens.css",
+    "styles.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"No tests\""
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "tailwindcss": "^4"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./button": {
+      "types": "./dist/button.d.ts",
+      "import": "./dist/button.mjs",
+      "require": "./dist/button.cjs"
+    },
+    "./theme/ThemeProvider": {
+      "types": "./dist/theme/ThemeProvider.d.ts",
+      "import": "./dist/theme/ThemeProvider.mjs",
+      "require": "./dist/theme/ThemeProvider.cjs"
+    },
+    "./tokens.css": "./tokens.css",
+    "./styles.css": "./styles.css"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "tsup": "^8.5.0"
+  }
+}
