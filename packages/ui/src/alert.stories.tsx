@@ -8,13 +8,14 @@ const meta: Meta<AlertProps> = {
   tags: ["autodocs"],
   parameters: { layout: "padded" },
   argTypes: {
-    tone: { control: { type: "select" }, options: ["solid", "soft", "outline"] },
+    variant: { control: { type: "select" }, options: ["solid", "soft", "outline"] },
+    tone: { control: false },
     color: { control: { type: "select" }, options: ["brand", "primary", "secondary", "success", "warning", "error", "info"] },
   },
   args: {
     title: "Update available",
     children: "A new version of the app is ready to install.",
-    tone: "soft",
+    variant: "soft",
     color: "info",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

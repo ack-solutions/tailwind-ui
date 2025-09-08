@@ -22,7 +22,7 @@ export default function ComponentsIndexPage() {
           <Typography variant="body2" color="muted">
             Interactive button component with multiple variants, sizes, and semantic colors.
           </Typography>
-          <Button as="a" href="/components/button" intent="outline" size="sm" fullWidth>
+          <Button as="a" href="/components/button" variant="outline" size="sm" fullWidth>
             View Details →
           </Button>
         </div>
@@ -34,7 +34,7 @@ export default function ComponentsIndexPage() {
           <Typography variant="body2" color="muted">
             Small status and taxonomy labels with semantic colors and variants.
           </Typography>
-          <Button as="a" href="/components/badge" intent="outline" size="sm" fullWidth>
+          <Button as="a" href="/components/badge" variant="outline" size="sm" fullWidth>
             View Details →
           </Button>
         </div>
@@ -46,7 +46,7 @@ export default function ComponentsIndexPage() {
           <Typography variant="body2" color="muted">
             Feedback banners for success, warning, error, and informational messages.
           </Typography>
-          <Button as="a" href="/components/alert" intent="outline" size="sm" fullWidth>
+          <Button as="a" href="/components/alert" variant="outline" size="sm" fullWidth>
             View Details →
           </Button>
         </div>
@@ -63,7 +63,7 @@ export default function ComponentsIndexPage() {
               Versatile button component with multiple intents, sizes, and color variants.
             </Typography>
           </div>
-          <Button as="a" href="/components/button" intent="outline">
+          <Button as="a" href="/components/button" variant="outline">
             View Full API →
           </Button>
         </div>
@@ -75,9 +75,9 @@ export default function ComponentsIndexPage() {
             </Typography>
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <Button>Default</Button>
-              <Button intent="outline">Outline</Button>
-              <Button intent="ghost">Ghost</Button>
-              <Button intent="link">Link</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="link">Link</Button>
             </div>
             <CodeViewer language="typescript" code={`import { Button } from "@ackplus/ui";
 
@@ -85,9 +85,9 @@ export function ButtonExamples() {
   return (
     <div className="flex gap-3">
       <Button>Default</Button>
-      <Button intent="outline">Outline</Button>
-      <Button intent="ghost">Ghost</Button>
-      <Button intent="link">Link</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
     </div>
   );
 }`} />
@@ -160,7 +160,7 @@ export function ButtonExamples() {
               Small status indicators and labels with semantic meaning.
             </Typography>
           </div>
-          <Button as="a" href="/components/badge" intent="outline">
+          <Button as="a" href="/components/badge" variant="outline">
             View Full API →
           </Button>
         </div>
@@ -236,7 +236,7 @@ export function BadgeVariants() {
               Contextual feedback messages for user actions and system states.
             </Typography>
           </div>
-          <Button as="a" href="/components/alert" intent="outline">
+          <Button as="a" href="/components/alert" variant="outline">
             View Full API →
           </Button>
         </div>
@@ -244,16 +244,16 @@ export function BadgeVariants() {
         <div className="space-y-6">
           <div>
             <Typography variant="h4" gutterBottom>
-              Tones & Colors
+              Variants & Colors
             </Typography>
             <div className="space-y-4">
-              <Alert color="info" title="Information" tone="soft">
+              <Alert color="info" title="Information" variant="soft">
                 This is an informational message with soft tone.
               </Alert>
-              <Alert color="success" title="Success" tone="outline">
+              <Alert color="success" title="Success" variant="outline">
                 Your changes have been saved successfully.
               </Alert>
-              <Alert color="warning" title="Warning" tone="solid">
+              <Alert color="warning" title="Warning" variant="solid">
                 Please review your input before continuing.
               </Alert>
               <Alert color="error" title="Error">
@@ -265,15 +265,15 @@ export function BadgeVariants() {
 export function AlertExamples() {
   return (
     <div className="space-y-4">
-      <Alert color="info" title="Information" tone="soft">
+      <Alert color="info" title="Information" variant="soft">
         This is an informational message.
       </Alert>
       
-      <Alert color="success" title="Success" tone="outline">
+      <Alert color="success" title="Success" variant="outline">
         Your changes have been saved.
       </Alert>
       
-      <Alert color="warning" title="Warning" tone="solid">
+      <Alert color="warning" title="Warning" variant="solid">
         Please review your input.
       </Alert>
       
@@ -345,7 +345,7 @@ export function AlertExamples() {
             <Typography variant="body2" color="muted">
               Experiment with all component props and see live updates in our Storybook.
             </Typography>
-            <Button as="a" href="/storybook/index.html" intent="outline" size="sm">
+            <Button as="a" href="/storybook/index.html" variant="outline" size="sm">
               Open Storybook →
             </Button>
           </div>
@@ -357,7 +357,7 @@ export function AlertExamples() {
             <Typography variant="body2" color="muted">
               Learn how to customize colors, themes, and component variants.
             </Typography>
-            <Button as="a" href="/theming" intent="outline" size="sm">
+            <Button as="a" href="/theming" variant="outline" size="sm">
               View Theming →
             </Button>
           </div>

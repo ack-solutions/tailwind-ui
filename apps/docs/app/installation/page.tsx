@@ -31,7 +31,7 @@ export default function InstallationPage() {
       <CodeViewer language="typescript" code={`import { ThemeProvider } from "@ackplus/ui";\n\nexport default function RootLayout({ children }) {\n  return (\n    <html lang=\"en\">\n      <body>\n        <ThemeProvider theme=\"light\">{children}</ThemeProvider>\n      </body>\n    </html>\n  );\n}`} />
 
       <h2 className="mt-6 text-2xl font-semibold">Using Components</h2>
-      <CodeViewer language="typescript" code={`import { Button } from "@ackplus/ui";\n\nexport function Toolbar() {\n  return (\n    <div className=\"flex gap-3\">\n      <Button>Save</Button>\n      <Button intent=\"outline\">Cancel</Button>\n      <Button intent=\"ghost\" size=\"sm\">Help</Button>\n    </div>\n  );\n}`} />
+      <CodeViewer language="typescript" code={`import { Button } from "@ackplus/ui";\n\nexport function Toolbar() {\n  return (\n    <div className=\"flex gap-3\">\n      <Button>Save</Button>\n      <Button variant=\"outline\">Cancel</Button>\n      <Button variant=\"ghost\" size=\"sm\">Help</Button>\n    </div>\n  );\n}`} />
 
       <h2>Tailwind v4 Notes</h2>
       <ul>

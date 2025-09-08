@@ -78,8 +78,8 @@ export default function App() {
           
           <div className="flex gap-3">
             <Button color="primary">Get Started</Button>
-            <Button color="secondary" intent="outline">Learn More</Button>
-            <Button intent="ghost">Documentation</Button>
+            <Button color="secondary" variant="outline">Learn More</Button>
+            <Button variant="ghost">Documentation</Button>
           </div>
           
           <Alert color="success" title="Ready to go!">
@@ -113,7 +113,7 @@ export default function App() {
             <Typography variant="body2" color="muted">
               Browse our comprehensive component library with interactive examples and API documentation.
             </Typography>
-            <Button as="a" href="/components" intent="outline" size="sm">
+            <Button as="a" href="/components" variant="outline" size="sm">
               View Components →
             </Button>
           </div>
@@ -125,7 +125,7 @@ export default function App() {
             <Typography variant="body2" color="muted">
               Learn how to customize themes, colors, and component variants to match your design system.
             </Typography>
-            <Button as="a" href="/theming" intent="outline" size="sm">
+            <Button as="a" href="/theming" variant="outline" size="sm">
               Learn Theming →
             </Button>
           </div>
@@ -137,7 +137,7 @@ export default function App() {
             <Typography variant="body2" color="muted">
               Experiment with component props and see all possible variations in our interactive Storybook.
             </Typography>
-            <Button as="a" href="/storybook/index.html" intent="outline" size="sm">
+            <Button as="a" href="/storybook/index.html" variant="outline" size="sm">
               Open Storybook →
             </Button>
           </div>
@@ -149,7 +149,7 @@ export default function App() {
             <Typography variant="body2" color="muted">
               Detailed setup instructions, configuration options, and troubleshooting guide.
             </Typography>
-            <Button as="a" href="/installation" intent="outline" size="sm">
+            <Button as="a" href="/installation" variant="outline" size="sm">
               View Details →
             </Button>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { cn } from "./lib/cn";
+import { brandStyle, type SemanticColor } from "./lib/colors";
 
 const badgeStyles = tv({
   slots: {
@@ -40,14 +41,7 @@ const badgeStyles = tv({
 
 export type BadgeVariant = "solid" | "soft" | "outline";
 export type BadgeSize = "sm" | "md" | "lg";
-export type BadgeColor =
-  | "brand"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "error"
-  | "info";
+export type BadgeColor = SemanticColor;
 
 type BadgeVariants = VariantProps<typeof badgeStyles>;
 
@@ -69,10 +63,7 @@ export interface BadgeProps extends BadgeVariants {
 
 export function Badge({ variant, size, withDot, className, children, color }: BadgeProps) {
   const styles = badgeStyles({ variant, size, withDot });
-  const brandOverride =
-    color && color !== "brand"
-      ? ({ ["--ack-brand" as any]: `var(--ack-${color})` } as React.CSSProperties)
-      : undefined;
+  const brandOverride = brandStyle(color);
   return (
     <span className={cn(styles.root(), className)} style={brandOverride}>
       {withDot ? <span aria-hidden className={styles.dot()} /> : null}

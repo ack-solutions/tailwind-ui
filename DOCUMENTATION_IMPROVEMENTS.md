@@ -72,7 +72,7 @@ export type PolymorphicComponentProps<E, P> = ...
 </Typography>
 
 // Enhanced button with full TypeScript support
-<Button color="primary" intent="solid" size="lg">
+<Button color="primary" variant="solid" size="lg">
   Action
 </Button>
 ```

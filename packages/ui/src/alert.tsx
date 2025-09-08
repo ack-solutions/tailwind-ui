@@ -1,6 +1,7 @@
 import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { cn } from "./lib/cn";
+import { brandStyle, type SemanticColor } from "./lib/colors";
 
 const alertStyles = tv({
   slots: {
@@ -8,10 +9,10 @@ const alertStyles = tv({
     icon: "size-5 shrink-0 mt-0.5",
     content: "min-w-0",
     title: "font-semibold",
-    description: "text-sm ack-muted mt-1",
+    description: "text-sm text-muted mt-1",
   },
   variants: {
-    tone: {
+    variant: {
       solid: {
         root: "bg-brand text-[color:var(--ack-btn-fg)] border-brand",
         title: "text-[color:var(--ack-btn-fg)]",
@@ -30,18 +31,11 @@ const alertStyles = tv({
       },
     },
   },
-  defaultVariants: { tone: "soft" },
+  defaultVariants: { variant: "soft" },
 });
 
 export type AlertTone = "solid" | "soft" | "outline";
-export type AlertColor =
-  | "brand"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "error"
-  | "info";
+export type AlertColor = SemanticColor;
 
 type AlertVariants = VariantProps<typeof alertStyles>;
 
@@ -52,6 +46,15 @@ type AlertVariants = VariantProps<typeof alertStyles>;
  * - title: optional title row
  * - children: description/content area
  * - icon: optional leading icon
+ */
+/**
+ * Alert props
+ * - variant: visual style (solid, soft, outline)
+ * - color: semantic color for brand mapping
+ * - title: optional title
+ * - icon: optional leading icon
+ *
+ * @deprecated `tone` is deprecated. Use `variant` instead.
  */
 export interface AlertProps extends AlertVariants {
   /** Additional class names for the root element */
@@ -64,14 +67,14 @@ export interface AlertProps extends AlertVariants {
   icon?: React.ReactNode;
   /** Semantic color key (primary, secondary, success, warning, error, info) */
   color?: AlertColor;
+  /** @deprecated Use `variant` instead */
+  tone?: AlertTone;
 }
 
-export function Alert({ tone, className, title, children, icon, color }: AlertProps) {
-  const styles = alertStyles({ tone });
-  const brandOverride =
-    color && color !== "brand"
-      ? ({ ["--ack-brand" as any]: `var(--ack-${color})` } as React.CSSProperties)
-      : undefined;
+export function Alert({ tone, variant, className, title, children, icon, color }: AlertProps) {
+  const v = (variant ?? tone) as AlertTone | undefined;
+  const styles = alertStyles({ variant: v });
+  const brandOverride = brandStyle(color);
   return (
     <div className={cn(styles.root(), className)} style={brandOverride}>
       {icon ? <span aria-hidden className={styles.icon()}>{icon}</span> : null}

@@ -27,19 +27,19 @@ export default function BadgePlaygroundPage() {
   return (
     <div>
       <h1 className="text-2xl font-semibold">Badge</h1>
-      <p className="ack-muted mt-2 max-w-2xl">Interactive controls for badge variants, sizes, color, and dot.</p>
+      <p className="text-muted mt-2 max-w-2xl">Interactive controls for badge variants, sizes, color, and dot.</p>
 
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
         <section className="border rounded p-4">
           <h2 className="font-semibold mb-3">Controls</h2>
           <div className="space-y-3">
             <div>
-              <label className="block text-sm ack-muted mb-1">Label</label>
+              <label className="block text-sm text-muted mb-1">Label</label>
               <input value={label} onChange={(e) => setLabel(e.target.value)} className="w-full border rounded px-3 h-9" />
             </div>
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <label className="block text-sm ack-muted mb-1">Variant</label>
+                <label className="block text-sm text-muted mb-1">Variant</label>
                 <select value={variant} onChange={(e) => setVariant(e.target.value as Variant)} className="w-full border rounded px-2 h-9">
                   <option value="solid">solid</option>
                   <option value="soft">soft</option>
@@ -47,7 +47,7 @@ export default function BadgePlaygroundPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm ack-muted mb-1">Size</label>
+                <label className="block text-sm text-muted mb-1">Size</label>
                 <select value={size} onChange={(e) => setSize(e.target.value as Size)} className="w-full border rounded px-2 h-9">
                   <option value="sm">sm</option>
                   <option value="md">md</option>
@@ -55,7 +55,7 @@ export default function BadgePlaygroundPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm ack-muted mb-1">Color</label>
+                <label className="block text-sm text-muted mb-1">Color</label>
                 <select value={color} onChange={(e) => setColor(e.target.value as Color)} className="w-full border rounded px-2 h-9">
                   <option value="primary">primary</option>
                   <option value="secondary">secondary</option>
@@ -85,4 +85,3 @@ export default function BadgePlaygroundPage() {
     </div>
   );
 }
-

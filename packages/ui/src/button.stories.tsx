@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { Button, type ButtonProps } from "./button";
+import { Button } from "./button";
 
-const meta: Meta<ButtonProps> = {
+const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button as any,
   tags: ["autodocs"],
@@ -11,7 +11,7 @@ const meta: Meta<ButtonProps> = {
     docs: { description: { component: "Polymorphic Button with variants and slots." } },
   },
   argTypes: {
-    intent: {
+    variant: {
       control: { type: "select" },
       options: ["solid", "outline", "ghost", "link"],
     },
@@ -27,13 +27,14 @@ const meta: Meta<ButtonProps> = {
     fullWidth: { control: { type: "boolean" } },
     as: { control: { type: "text" } },
     className: { control: { type: "text" } },
+    intent: { control: false },
     icon: { control: false },
     slots: { control: false },
     slotProps: { control: false },
   },
   args: {
     children: "Button",
-    intent: "solid",
+    variant: "solid",
     size: "md",
     color: "primary",
     fullWidth: false,
@@ -41,17 +42,17 @@ const meta: Meta<ButtonProps> = {
 };
 
 export default meta;
-type Story = StoryObj<ButtonProps>;
+type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
 
 export const Intents: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-      <Button {...args} intent="solid">Solid</Button>
-      <Button {...args} intent="outline">Outline</Button>
-      <Button {...args} intent="ghost">Ghost</Button>
-      <Button {...args} intent="link">Link</Button>
+      <Button {...args} variant="solid">Solid</Button>
+      <Button {...args} variant="outline">Outline</Button>
+      <Button {...args} variant="ghost">Ghost</Button>
+      <Button {...args} variant="link">Link</Button>
     </div>
   ),
 };
@@ -115,7 +116,7 @@ export const WithSlotProps: Story = {
 
 export const AsAnchor: Story = {
   render: (args) => (
-    <Button {...args} as="a" href="#" intent="link">
+    <Button {...args} as="a" href="#" variant="link">
       As link
     </Button>
   ),

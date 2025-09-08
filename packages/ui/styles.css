@@ -48,6 +48,4 @@
   color: var(--ack-text);
 }
 
-.ack-muted {
-  color: var(--ack-muted);
-}
+/* .ack-muted removed in favor of Tailwind token utility `text-muted` */

@@ -73,7 +73,7 @@ export function SiteHeader() {
 
           {/* Theme Toggle */}
           <Button
-            intent="ghost"
+            variant="ghost"
             size="sm"
             onClick={toggle}
             className="w-8 h-8 p-0"
@@ -92,7 +92,7 @@ export function SiteHeader() {
 
           {/* Mobile menu button */}
           <Button
-            intent="ghost"
+            variant="ghost"
             size="sm"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="w-8 h-8 p-0 md:hidden"

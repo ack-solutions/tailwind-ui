@@ -31,7 +31,7 @@ export function CopyButton({ text, className }: { text: string; className?: stri
 
   return (
     <Button
-      intent="ghost"
+      variant="ghost"
       size="sm"
       onClick={onCopy}
       className={`text-xs transition-all ${className || ""}`}
@@ -55,4 +55,3 @@ export function CopyButton({ text, className }: { text: string; className?: stri
     </Button>
   );
 }
-

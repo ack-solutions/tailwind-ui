@@ -2,6 +2,7 @@ import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { cn } from "./lib/cn";
 import { PolymorphicComponentProps, PolymorphicRef } from "./lib/polymorphic";
+import { brandStyle, type SemanticColor } from "./lib/colors";
 
 const buttonStyles = tv({
   slots: {
@@ -11,7 +12,7 @@ const buttonStyles = tv({
     icon: "size-4 shrink-0",
   },
   variants: {
-    intent: {
+    variant: {
       solid: {
         root:
           "bg-brand text-[color:var(--ack-btn-fg)] border-border hover:brightness-105 active:translate-y-px active:shadow-md",
@@ -39,21 +40,14 @@ const buttonStyles = tv({
     },
   },
   defaultVariants: {
-    intent: "solid",
+    variant: "solid",
     size: "md",
   },
 });
 
 export type ButtonIntent = "solid" | "outline" | "ghost" | "link";
 export type ButtonSize = "sm" | "md" | "lg";
-export type ButtonColor =
-  | "brand"
-  | "primary"
-  | "secondary"
-  | "success"
-  | "warning"
-  | "error"
-  | "info";
+export type ButtonColor = SemanticColor;
 
 type ButtonVariants = VariantProps<typeof buttonStyles>;
 
@@ -69,12 +63,23 @@ export type ButtonSlotProps = {
   icon?: React.HTMLAttributes<HTMLSpanElement>;
 };
 
+/**
+ * Button props
+ * - variant: visual style (solid, outline, ghost, link)
+ * - size: control size (sm, md, lg)
+ * - fullWidth: stretches button to 100% width
+ * - color: semantic color to remap brand tokens
+ *
+ * @deprecated `intent` is deprecated. Use `variant` instead.
+ */
 export interface ButtonOwnProps extends ButtonVariants {
   className?: string;
   icon?: React.ReactNode;
   slots?: ButtonSlots;
   slotProps?: ButtonSlotProps;
   color?: ButtonColor; // semantic color; defaults to brand/primary
+  /** @deprecated Use `variant` instead */
+  intent?: ButtonIntent;
 }
 
 export type ButtonProps<E extends React.ElementType = "button"> =
@@ -86,6 +91,7 @@ const ButtonImpl = (
     className,
     children,
     intent,
+    variant,
     size,
     fullWidth,
     icon,
@@ -97,16 +103,14 @@ const ButtonImpl = (
   ref: PolymorphicRef<any>
 ) => {
   const Comp = (as || "button") as React.ElementType;
-  const styles = buttonStyles({ intent, size, fullWidth });
+  const visual = (variant ?? intent) as ButtonIntent | undefined;
+  const styles = buttonStyles({ variant: visual, size, fullWidth });
 
   const rootClass = cn(styles.root(), slots?.root, className, slotProps?.root?.className);
   const labelClass = cn(styles.label(), slots?.label, slotProps?.label?.className);
   const iconClass = cn(styles.icon(), slots?.icon, slotProps?.icon?.className);
 
-  const brandOverride =
-    color && color !== "brand"
-      ? ({ ["--ack-brand" as any]: `var(--ack-${color})` } as React.CSSProperties)
-      : undefined;
+  const brandOverride = brandStyle(color);
 
   const rootProps = {
     ...slotProps?.root,
