@@ -1,4 +1,5 @@
 import { Typography, Button, Alert, Badge } from "@ackplus/ui";
+import Link from "next/link";
 import { CodeViewer } from "../../components/CodeViewer";
 
 export default function GettingStartedPage() {
@@ -113,9 +114,7 @@ export default function App() {
             <Typography variant="body2" color="muted">
               Browse our comprehensive component library with interactive examples and API documentation.
             </Typography>
-            <Button as="a" href="/components" variant="outline" size="sm">
-              View Components →
-            </Button>
+            <Button as={Link} href="/components" variant="outline" size="sm">View Components →</Button>
           </div>
           
           <div className="p-6 border border-border rounded-lg space-y-3">
@@ -125,9 +124,7 @@ export default function App() {
             <Typography variant="body2" color="muted">
               Learn how to customize themes, colors, and component variants to match your design system.
             </Typography>
-            <Button as="a" href="/theming" variant="outline" size="sm">
-              Learn Theming →
-            </Button>
+            <Button as={Link} href="/theming" variant="outline" size="sm">Learn Theming →</Button>
           </div>
           
           <div className="p-6 border border-border rounded-lg space-y-3">
@@ -137,9 +134,7 @@ export default function App() {
             <Typography variant="body2" color="muted">
               Experiment with component props and see all possible variations in our interactive Storybook.
             </Typography>
-            <Button as="a" href="/storybook/index.html" variant="outline" size="sm">
-              Open Storybook →
-            </Button>
+            <Button as={Link} href="/storybook/index.html" variant="outline" size="sm">Open Storybook →</Button>
           </div>
           
           <div className="p-6 border border-border rounded-lg space-y-3">
@@ -149,9 +144,7 @@ export default function App() {
             <Typography variant="body2" color="muted">
               Detailed setup instructions, configuration options, and troubleshooting guide.
             </Typography>
-            <Button as="a" href="/installation" variant="outline" size="sm">
-              View Details →
-            </Button>
+            <Button as={Link} href="/installation" variant="outline" size="sm">View Details →</Button>
           </div>
         </div>
       </section>

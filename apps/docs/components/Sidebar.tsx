@@ -1,6 +1,7 @@
 "use client";
 
 import { Typography } from "@ackplus/ui";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -113,7 +114,7 @@ export function Sidebar({ className }: SidebarProps) {
                       </svg>
                     </button>
                   ) : (
-                    <a
+                    <Link
                       href={item.href}
                       className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-surface-2 ${
                         isActive(item.href) 
@@ -122,14 +123,14 @@ export function Sidebar({ className }: SidebarProps) {
                       }`}
                     >
                       {item.title}
-                    </a>
+                    </Link>
                   )}
                 </div>
                 {item.items && isSectionOpen(item.title) && (
                   <ul className="ml-4 mt-1 space-y-1 border-l border-border pl-4">
                     {item.items.map((subItem) => (
                       <li key={subItem.title}>
-                        <a
+                        <Link
                           href={subItem.href}
                           className={`block rounded-md px-3 py-2 text-sm transition-colors hover:bg-surface-2 ${
                             isActive(subItem.href)
@@ -138,7 +139,7 @@ export function Sidebar({ className }: SidebarProps) {
                           }`}
                         >
                           {subItem.title}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -154,12 +155,12 @@ export function Sidebar({ className }: SidebarProps) {
           </Typography>
           <ul className="space-y-1">
             <li>
-              <a
+              <Link
                 href="/storybook/index.html"
                 className="block rounded-md px-3 py-2 text-sm text-muted transition-colors hover:bg-surface-2 hover:text-text"
               >
                 Storybook
-              </a>
+              </Link>
             </li>
             <li>
               <a

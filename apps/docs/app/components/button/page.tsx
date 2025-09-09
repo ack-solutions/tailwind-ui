@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Button } from "@ackplus/ui";
+import Link from "next/link";
 import { CodeViewer } from "../../../components/CodeViewer";
 
 type Variant = "solid" | "outline" | "ghost" | "link";
@@ -139,9 +140,8 @@ export default function ButtonPlaygroundPage() {
           <div className="mt-4">
             <CodeViewer code={code} language="typescript" />
             <div className="mt-3 text-sm text-muted">
-              Tip: open in Storybook to explore more states
-              {" "}
-              <a className="text-brand underline underline-offset-4" href="/storybook/index.html?path=/story/button--primary">here</a>.
+              Tip: open in Storybook to explore more states {" "}
+              <Link className="text-brand underline underline-offset-4" href="/storybook/index.html?path=/story/button--primary">here</Link>.
             </div>
           </div>
         </section>

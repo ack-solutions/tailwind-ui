@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Typography, Button } from "@ackplus/ui";
 
 // Lightweight theme toggle using data-theme. This mirrors ThemeProvider behavior.
@@ -35,24 +36,24 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center">
-          <a href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary"></div>
             <Typography variant="h6" color="primary" className="font-bold">
               AckPlus UI
             </Typography>
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="text-sm font-medium text-muted hover:text-text transition-colors"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -116,23 +117,23 @@ export function SiteHeader() {
         <div className="md:hidden border-t border-border bg-surface">
           <nav className="px-4 py-4 space-y-2">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="block py-2 text-sm font-medium text-muted hover:text-text transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <div className="pt-2 mt-2 border-t border-border">
-              <a
+              <Link
                 href="/storybook/index.html"
                 className="block py-2 text-sm font-medium text-muted hover:text-text transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Storybook
-              </a>
+              </Link>
               <a
                 href="https://github.com"
                 target="_blank"

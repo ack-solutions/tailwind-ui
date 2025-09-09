@@ -32,7 +32,7 @@ const buttonStyles = tv({
     },
     size: {
       sm: { root: "h-8 text-sm px-3", icon: "size-4" },
-      md: { root: "h-10 text-[0.95rem] px-3.5", icon: "size-4.5" },
+      md: { root: "h-10 text-[0.95rem] px-3.5", icon: "size-[18px]" },
       lg: { root: "h-11 text-base px-4", icon: "size-5" },
     },
     fullWidth: {

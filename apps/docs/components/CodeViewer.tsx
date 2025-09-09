@@ -11,7 +11,7 @@ const Editor = dynamic(() => import("@monaco-editor/react").then(m => m.Editor),
       <div className="absolute right-2 top-2 z-10">
         <span className="border rounded px-3 h-8 text-sm inline-flex items-center">Loading…</span>
       </div>
-      <pre className="m-0 p-4 overflow-auto bg-gray-50 text-sm">Loading…</pre>
+      <pre className="m-0 p-4 overflow-auto bg-surface-2 text-sm">Loading…</pre>
     </div>
   ),
 });

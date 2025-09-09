@@ -3,15 +3,16 @@
 Monorepo for AckPlus UI components, built with pnpm, Turborepo, and shared tooling.
 
 
-## Documentation
+## Documentation & Links
 
-An interactive demo is provided via a Next.js app in [`apps/docs`](apps/docs). The site is automatically exported as a static bundle and deployed to GitHub Pages.
+An interactive docs site and Storybook are published to GitHub Pages from [`apps/docs`](apps/docs).
 
-- **Demo:** https://ackplus.github.io/tailwind-ui/
-- **Develop:** `pnpm --filter docs... run dev`
-- **Build:** `pnpm --filter docs... run build`
+- **Docs:** https://ack-solutions.github.io/tailwind-ui/
+- **Storybook:** https://ack-solutions.github.io/tailwind-ui/storybook/
+- **Develop docs:** `pnpm --filter docs... run dev`
+- **Build docs:** `pnpm --filter docs... run build`
 
-The GitHub Actions workflow at [`.github/workflows/deploy-docs.yml`](.github/workflows/deploy-docs.yml) builds and publishes the demo on every push to `main`.
+Deployment is handled by [`.github/workflows/pages.yml`](.github/workflows/pages.yml) on pushes to `main`.
 
 
 ## Prerequisites
@@ -28,14 +29,44 @@ Install dependencies:
 pnpm install
 ```
 
+Add AckPlus UI to your app:
+
+```bash
+pnpm add @ackplus/ui
+```
+
+Import Tailwind v4 and the UI styles in your global CSS (for example, `app/globals.css`):
+
+```css
+@import "tailwindcss";
+@import "@ackplus/ui/tokens.css";
+@import "@ackplus/ui/styles.css";
+```
+
+Use components:
+
+```tsx
+import { Button, Alert, Badge } from "@ackplus/ui";
+
+export default function Example() {
+  return (
+    <div className="space-y-3">
+      <Button color="primary">Get Started</Button>
+      <Alert color="success" title="All set!">You're ready to go.</Alert>
+      <Badge variant="soft">New</Badge>
+    </div>
+  );
+}
+```
+
 ## Scripts
 
-Common scripts are available through pnpm:
+- `pnpm dev`: run dev servers (filter with `--filter`).
+- `pnpm build`: build all packages.
+- `pnpm lint`: run ESLint across the repo.
+- `pnpm test`: run tests (if present).
 
-- `pnpm dev` – start the development server.
-- `pnpm build` – build all packages.
-- `pnpm lint` – run ESLint across the project.
-- `pnpm test` – run the test suite.
+Note: the docs app uses a `basePath` of `/tailwind-ui` for GitHub Pages. Links and assets are prefixed automatically both in dev and production.
 
 ## Project structure
 
