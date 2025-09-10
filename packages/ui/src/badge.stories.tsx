@@ -10,10 +10,9 @@ const meta: Meta<BadgeProps> = {
   argTypes: {
     variant: { control: { type: "select" }, options: ["solid", "soft", "outline"] },
     size: { control: { type: "select" }, options: ["sm", "md", "lg"] },
-    withDot: { control: { type: "boolean" } },
-    color: { control: { type: "select" }, options: ["brand", "primary", "secondary", "success", "warning", "error", "info"] },
+    color: { control: { type: "select" }, options: ["primary", "secondary", "success", "warning", "error", "info"] },
   },
-  args: { children: "Badge", variant: "soft", size: "md", withDot: true, color: "primary" },
+  args: { children: "Badge", variant: "soft", size: "md", color: "primary" },
 };
 
 export default meta;
@@ -23,7 +22,7 @@ export const Playground: Story = {};
 
 export const Colors: Story = {
   render: (args) => (
-    <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+    <div className="flex gap-3 flex-wrap">
       <Badge {...args} color="primary">Primary</Badge>
       <Badge {...args} color="secondary">Secondary</Badge>
       <Badge {...args} color="success">Success</Badge>

@@ -155,20 +155,20 @@ window.matchMedia("(prefers-color-scheme: dark)")
             </Typography>
             <CodeViewer language="css" code={`:root {
   /* Override primary color */
-  --ack-primary: oklch(0.60 0.20 280);
+  --apui-primary: oklch(0.60 0.20 280);
   
   /* Override secondary color */
-  --ack-secondary: oklch(0.70 0.15 120);
+  --apui-secondary: oklch(0.70 0.15 120);
   
   /* Override success color */
-  --ack-success: oklch(0.65 0.18 140);
+  --apui-success: oklch(0.65 0.18 140);
 }
 
 /* Dark theme overrides */
 :where([data-theme="dark"]) {
-  --ack-primary: oklch(0.75 0.18 280);
-  --ack-secondary: oklch(0.80 0.12 120);
-  --ack-success: oklch(0.75 0.15 140);
+  --apui-primary: oklch(0.75 0.18 280);
+  --apui-secondary: oklch(0.80 0.12 120);
+  --apui-success: oklch(0.75 0.15 140);
 }`} />
           </div>
 
@@ -221,22 +221,22 @@ window.matchMedia("(prefers-color-scheme: dark)")
             <CodeViewer language="css" code={`/* tokens.css - Add to your project */
 :root {
   /* Brand colors */
-  --ack-brand-50: oklch(0.98 0.02 280);
-  --ack-brand-100: oklch(0.95 0.05 280);
-  --ack-brand-500: oklch(0.60 0.20 280);
-  --ack-brand-900: oklch(0.30 0.25 280);
+  --apui-brand-50: oklch(0.98 0.02 280);
+  --apui-brand-100: oklch(0.95 0.05 280);
+  --apui-brand-500: oklch(0.60 0.20 280);
+  --apui-brand-900: oklch(0.30 0.25 280);
   
   /* Map to semantic tokens */
-  --ack-primary: var(--ack-brand-500);
-  --ack-surface: var(--ack-brand-50);
+  --apui-primary: var(--apui-brand-500);
+  --apui-surface: var(--apui-brand-50);
 }
 
 /* Make available to Tailwind */
 @theme {
-  --color-brand-50: var(--ack-brand-50);
-  --color-brand-100: var(--ack-brand-100);
-  --color-brand-500: var(--ack-brand-500);
-  --color-brand-900: var(--ack-brand-900);
+  --color-brand-50: var(--apui-brand-50);
+  --color-brand-100: var(--apui-brand-100);
+  --color-brand-500: var(--apui-brand-500);
+  --color-brand-900: var(--apui-brand-900);
 }`} />
           </div>
 
@@ -250,7 +250,7 @@ window.matchMedia("(prefers-color-scheme: dark)")
             <CodeViewer language="typescript" code={`// Custom button variant
 <Button 
   className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
-  style={{ '--ack-brand': 'oklch(0.7 0.2 300)' } as React.CSSProperties}
+  style={{ '--apui-brand': 'oklch(0.7 0.2 300)' } as React.CSSProperties}
 >
   Gradient Button
 </Button>
@@ -292,11 +292,11 @@ window.matchMedia("(prefers-color-scheme: dark)")
             </thead>
             <tbody>
               {[
-                { token: '--ack-primary', purpose: 'Primary brand color', light: 'oklch(0.64 0.16 252)', dark: 'oklch(0.72 0.12 255)' },
-                { token: '--ack-secondary', purpose: 'Secondary accent color', light: 'oklch(0.62 0.18 320)', dark: 'oklch(0.74 0.12 320)' },
-                { token: '--ack-success', purpose: 'Success state color', light: 'oklch(0.70 0.16 150)', dark: 'oklch(0.76 0.13 150)' },
-                { token: '--ack-surface', purpose: 'Background surface', light: 'oklch(0.98 0 0)', dark: 'oklch(0.17 0 0)' },
-                { token: '--ack-text', purpose: 'Primary text color', light: 'oklch(0.21 0 0)', dark: 'oklch(0.95 0 0)' },
+                { token: '--apui-primary', purpose: 'Primary brand color', light: 'oklch(0.64 0.16 252)', dark: 'oklch(0.72 0.12 255)' },
+                { token: '--apui-secondary', purpose: 'Secondary accent color', light: 'oklch(0.62 0.18 320)', dark: 'oklch(0.74 0.12 320)' },
+                { token: '--apui-success', purpose: 'Success state color', light: 'oklch(0.70 0.16 150)', dark: 'oklch(0.76 0.13 150)' },
+                { token: '--apui-surface', purpose: 'Background surface', light: 'oklch(0.98 0 0)', dark: 'oklch(0.17 0 0)' },
+                { token: '--apui-text', purpose: 'Primary text color', light: 'oklch(0.21 0 0)', dark: 'oklch(0.95 0 0)' },
               ].map((row) => (
                 <tr key={row.token} className="border-b border-border last:border-b-0">
                   <td className="p-4">

@@ -21,7 +21,7 @@ const meta: Meta<typeof Button> = {
     },
     color: {
       control: { type: "select" },
-      options: ["brand", "primary", "secondary", "success", "warning", "error", "info"],
+      options: ["primary", "secondary", "success", "warning", "error", "info"],
       description: "Semantic color palette",
     },
     fullWidth: { control: { type: "boolean" } },
@@ -48,7 +48,7 @@ export const Playground: Story = {};
 
 export const Intents: Story = {
   render: (args) => (
-    <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+    <div className="flex gap-3 flex-wrap">
       <Button {...args} variant="solid">Solid</Button>
       <Button {...args} variant="outline">Outline</Button>
       <Button {...args} variant="ghost">Ghost</Button>
@@ -59,7 +59,7 @@ export const Intents: Story = {
 
 export const Sizes: Story = {
   render: (args) => (
-    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+    <div className="flex gap-3 items-center">
       <Button {...args} size="sm">Small</Button>
       <Button {...args} size="md">Medium</Button>
       <Button {...args} size="lg">Large</Button>
@@ -69,7 +69,7 @@ export const Sizes: Story = {
 
 export const Colors: Story = {
   render: (args) => (
-    <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+    <div className="flex gap-3 flex-wrap">
       <Button {...args} color="primary">Primary</Button>
       <Button {...args} color="secondary">Secondary</Button>
       <Button {...args} color="success">Success</Button>
@@ -83,7 +83,7 @@ export const Colors: Story = {
 export const FullWidth: Story = {
   args: { fullWidth: true },
   render: (args) => (
-    <div style={{ width: 320 }}>
+    <div className="w-80">
       <Button {...args}>Full width</Button>
     </div>
   ),
@@ -124,12 +124,11 @@ export const AsAnchor: Story = {
 
 export const Loading: Story = {
   render: (args) => (
-    <Button {...args} disabled aria-busy="true" icon={
-      <svg className="animate-spin" viewBox="0 0 24 24" aria-hidden>
+    <Button {...args} disabled aria-busy="true">
+      <svg className="mr-2 size-4 animate-spin" viewBox="0 0 24 24" aria-hidden>
         <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" opacity="0.25" />
         <path d="M22 12a10 10 0 0 1-10 10" stroke="currentColor" strokeWidth="4" fill="none" />
       </svg>
-    }>
       Loading...
     </Button>
   ),

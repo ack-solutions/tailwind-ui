@@ -2,84 +2,95 @@ import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { cn } from "./lib/cn";
 import { PolymorphicComponentProps, PolymorphicRef } from "./lib/polymorphic";
-import { brandStyle, type SemanticColor } from "./lib/colors";
 
 const buttonStyles = tv({
-  slots: {
-    root:
-      "inline-flex items-center gap-2 justify-center select-none border font-semibold leading-none shadow-sm transition-[filter,box-shadow,transform] duration-150 disabled:opacity-50 disabled:pointer-events-none",
-    label: "truncate",
-    icon: "size-4 shrink-0",
-  },
+  base: [
+    "inline-flex items-center justify-center gap-2",
+    "border font-semibold transition-colors",
+    "disabled:opacity-50 disabled:pointer-events-none",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+  ],
   variants: {
     variant: {
-      solid: {
-        root:
-          "bg-brand text-[color:var(--ack-btn-fg)] border-border hover:brightness-105 active:translate-y-px active:shadow-md",
-      },
-      outline: {
-        root:
-          "bg-transparent text-brand border-brand hover:bg-surface-2/60 active:translate-y-px",
-      },
-      ghost: {
-        root:
-          "bg-transparent text-text border-transparent hover:bg-surface-2/60",
-      },
-      link: {
-        root:
-          "bg-transparent border-0 text-brand shadow-none p-0 h-auto underline underline-offset-4 hover:opacity-90",
-      },
+      solid: "",
+      outline: "bg-transparent",
+      ghost: "border-transparent",
+      link: "border-0 shadow-none p-0 h-auto underline underline-offset-4",
+    },
+    color: {
+      primary: "",
+      secondary: "",
+      success: "",
+      warning: "",
+      error: "",
+      info: "",
     },
     size: {
-      sm: { root: "h-8 text-sm px-3", icon: "size-4" },
-      md: { root: "h-10 text-[0.95rem] px-3.5", icon: "size-[18px]" },
-      lg: { root: "h-11 text-base px-4", icon: "size-5" },
+      sm: "h-8 px-3 text-sm",
+      md: "h-10 px-4 text-sm",
+      lg: "h-11 px-6 text-base",
     },
     fullWidth: {
-      true: { root: "w-full" },
+      true: "w-full",
     },
   },
+  compoundVariants: [
+    // Solid
+    { variant: "solid", color: "primary", class: "bg-primary text-primary-foreground border-primary hover:bg-primary/90" },
+    { variant: "solid", color: "secondary", class: "bg-secondary text-secondary-foreground border-secondary hover:bg-secondary/90" },
+    { variant: "solid", color: "success", class: "bg-success text-success-foreground border-success hover:bg-success/90" },
+    { variant: "solid", color: "warning", class: "bg-warning text-warning-foreground border-warning hover:bg-warning/90" },
+    { variant: "solid", color: "error", class: "bg-error text-error-foreground border-error hover:bg-error/90" },
+    { variant: "solid", color: "info", class: "bg-info text-info-foreground border-info hover:bg-info/90" },
+
+    // Outline
+    { variant: "outline", color: "primary", class: "border-primary text-primary hover:bg-primary hover:text-primary-foreground" },
+    { variant: "outline", color: "secondary", class: "border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground" },
+    { variant: "outline", color: "success", class: "border-success text-success hover:bg-success hover:text-success-foreground" },
+    { variant: "outline", color: "warning", class: "border-warning text-warning hover:bg-warning hover:text-warning-foreground" },
+    { variant: "outline", color: "error", class: "border-error text-error hover:bg-error hover:text-error-foreground" },
+    { variant: "outline", color: "info", class: "border-info text-info hover:bg-info hover:text-info-foreground" },
+
+    // Ghost
+    { variant: "ghost", color: "primary", class: "text-primary hover:bg-primary/10" },
+    { variant: "ghost", color: "secondary", class: "text-secondary hover:bg-secondary/10" },
+    { variant: "ghost", color: "success", class: "text-success hover:bg-success/10" },
+    { variant: "ghost", color: "warning", class: "text-warning hover:bg-warning/10" },
+    { variant: "ghost", color: "error", class: "text-error hover:bg-error/10" },
+    { variant: "ghost", color: "info", class: "text-info hover:bg-info/10" },
+
+    // Link
+    { variant: "link", color: "primary", class: "text-primary hover:opacity-80" },
+    { variant: "link", color: "secondary", class: "text-secondary hover:opacity-80" },
+    { variant: "link", color: "success", class: "text-success hover:opacity-80" },
+    { variant: "link", color: "warning", class: "text-warning hover:opacity-80" },
+    { variant: "link", color: "error", class: "text-error hover:opacity-80" },
+    { variant: "link", color: "info", class: "text-info hover:opacity-80" },
+  ],
   defaultVariants: {
     variant: "solid",
     size: "md",
+    color: "primary",
   },
 });
 
-export type ButtonIntent = "solid" | "outline" | "ghost" | "link";
+export type ButtonVariant = "solid" | "outline" | "ghost" | "link";
 export type ButtonSize = "sm" | "md" | "lg";
-export type ButtonColor = SemanticColor;
+export type ButtonColor = "primary" | "secondary" | "success" | "warning" | "error" | "info";
 
 type ButtonVariants = VariantProps<typeof buttonStyles>;
 
-export type ButtonSlots = {
-  root?: string;
-  label?: string;
-  icon?: string;
-};
-
-export type ButtonSlotProps = {
-  root?: React.HTMLAttributes<HTMLElement>;
-  label?: React.HTMLAttributes<HTMLSpanElement>;
-  icon?: React.HTMLAttributes<HTMLSpanElement>;
-};
-
 /**
- * Button props
+ * Button component props
  * - variant: visual style (solid, outline, ghost, link)
  * - size: control size (sm, md, lg)
  * - fullWidth: stretches button to 100% width
- * - color: semantic color to remap brand tokens
- *
- * @deprecated `intent` is deprecated. Use `variant` instead.
+ * - color: semantic color (primary, secondary, success, warning, error, info)
  */
 export interface ButtonOwnProps extends ButtonVariants {
   className?: string;
-  icon?: React.ReactNode;
-  slots?: ButtonSlots;
-  slotProps?: ButtonSlotProps;
-  color?: ButtonColor; // semantic color; defaults to brand/primary
-  /** @deprecated Use `variant` instead */
-  intent?: ButtonIntent;
+  children?: React.ReactNode;
+  color?: ButtonColor;
 }
 
 export type ButtonProps<E extends React.ElementType = "button"> =
@@ -90,45 +101,22 @@ const ButtonImpl = (
     as,
     className,
     children,
-    intent,
     variant,
     size,
     fullWidth,
-    icon,
-    color,
-    slots,
-    slotProps,
+    color = "primary",
     ...rest
   }: ButtonProps<any>,
   ref: PolymorphicRef<any>
 ) => {
   const Comp = (as || "button") as React.ElementType;
-  const visual = (variant ?? intent) as ButtonIntent | undefined;
-  const styles = buttonStyles({ variant: visual, size, fullWidth });
-
-  const rootClass = cn(styles.root(), slots?.root, className, slotProps?.root?.className);
-  const labelClass = cn(styles.label(), slots?.label, slotProps?.label?.className);
-  const iconClass = cn(styles.icon(), slots?.icon, slotProps?.icon?.className);
-
-  const brandOverride = brandStyle(color);
-
-  const rootProps = {
-    ...slotProps?.root,
-    style: { ...(slotProps?.root as any)?.style, ...(brandOverride || {}) },
-  } as React.HTMLAttributes<HTMLElement>;
-  const labelProps = { ...slotProps?.label };
-  const iconProps = { ...slotProps?.icon };
-
   return (
-    <Comp ref={ref} className={rootClass} {...rootProps} {...(rest as any)}>
-      {icon ? (
-        <span aria-hidden className={iconClass} {...iconProps}>
-          {icon}
-        </span>
-      ) : null}
-      <span className={labelClass} {...labelProps}>
-        {children}
-      </span>
+    <Comp 
+      ref={ref} 
+      className={cn(buttonStyles({ variant, size, fullWidth, color }), className)} 
+      {...rest}
+    >
+      {children}
     </Comp>
   );
 };

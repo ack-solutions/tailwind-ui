@@ -1,88 +1,96 @@
 /*
-  Tailwind v4 tokens and runtime theme variables for @ackplus/ui
-  - Do NOT @import "tailwindcss" here. Consumers import Tailwind in their app.
-  - Import order in the app should be:
-      1) @import "tailwindcss";
-      2) @import "@ackplus/ui/tokens.css";
-      3) (optionally) @import "@ackplus/ui/styles.css";
+  AckPlus UI - Tailwind v4 Theme Tokens
+  
+  This file integrates directly with Tailwind's @theme system.
+  No custom CSS variables needed - everything works through Tailwind's utilities.
 */
 
-/* Custom variant for dark mode based on a data attribute */
-@custom-variant theme-dark (&:where([data-theme="dark"] *));
+/* Dark mode variant using data attribute for runtime theme switching */
+@variant dark ([data-theme="dark"] &);
 
-/* Runtime CSS variables for instant theme switching */
-:root {
-  /* Base surfaces and text */
-  --ack-surface: oklch(0.98 0 0);           /* near-white */
-  --ack-surface-2: oklch(0.96 0 0);
-  --ack-text: oklch(0.21 0 0);               /* near-black */
-  --ack-muted: oklch(0.55 0 0);
-  --ack-border: oklch(0.86 0 0);
-
-  /* Semantic palette */
-  --ack-primary: oklch(0.64 0.16 252);       /* blue */
-  --ack-secondary: oklch(0.62 0.18 320);     /* purple */
-  --ack-success: oklch(0.70 0.16 150);       /* green */
-  --ack-warning: oklch(0.85 0.18 85);        /* amber */
-  --ack-error: oklch(0.62 0.20 20);          /* red */
-  --ack-info: oklch(0.72 0.14 220);          /* cyan */
-
-  /* Brand & Accent (aliases for components) */
-  --ack-brand: var(--ack-primary);
-  --ack-accent: var(--ack-secondary);
-
-  /* Buttons (defaults can alias brand) */
-  --ack-btn-bg: var(--ack-brand);
-  --ack-btn-fg: oklch(0.99 0 0);             /* white */
-}
-
-/* Dark theme overrides using the same runtime vars */
-:where([data-theme="dark"]) {
-  --ack-surface: oklch(0.17 0 0);            /* near-black */
-  --ack-surface-2: oklch(0.22 0 0);
-  --ack-text: oklch(0.95 0 0);                /* near-white */
-  --ack-muted: oklch(0.72 0 0);
-  --ack-border: oklch(0.35 0 0);
-
-  --ack-primary: oklch(0.72 0.12 255);       /* brighten in dark */
-  --ack-secondary: oklch(0.74 0.12 320);
-  --ack-success: oklch(0.76 0.13 150);
-  --ack-warning: oklch(0.78 0.16 85);
-  --ack-error: oklch(0.68 0.15 20);
-  --ack-info: oklch(0.78 0.10 220);
-
-  --ack-brand: var(--ack-primary);
-  --ack-accent: var(--ack-secondary);
-
-  --ack-btn-bg: var(--ack-brand);
-  --ack-btn-fg: oklch(0.10 0 0);
-}
-
-/* Tailwind v4 tokens. These drive generated utilities like bg-*, text-*, rounded-*, shadow-* */
+/* 
+  Tailwind v4 Theme System Integration
+  All colors automatically get utilities: bg-*, text-*, border-*, etc.
+*/
 @theme {
-  /* Colors */
-  --color-brand: var(--ack-brand);
-  --color-accent: var(--ack-accent);
-  --color-primary: var(--ack-primary);
-  --color-secondary: var(--ack-secondary);
-  --color-success: var(--ack-success);
-  --color-warning: var(--ack-warning);
-  --color-error: var(--ack-error);
-  --color-info: var(--ack-info);
-  --color-surface: var(--ack-surface);
-  --color-surface-2: var(--ack-surface-2);
-  --color-text: var(--ack-text);
-  --color-muted: var(--ack-muted);
-  --color-border: var(--ack-border);
-
-  /* Radii (rounded-*) */
+  /* Base Colors - Light Theme */
+  --color-background: oklch(98% 0 0);
+  --color-foreground: oklch(15% 0 0);
+  --color-muted: oklch(96% 0 0);
+  --color-muted-foreground: oklch(45% 0 0);
+  --color-border: oklch(89% 0 0);
+  
+  /* Semantic Colors */
+  --color-primary: oklch(64% 0.16 252);
+  --color-primary-foreground: oklch(98% 0 0);
+  --color-secondary: oklch(62% 0.18 320);
+  --color-secondary-foreground: oklch(98% 0 0);
+  --color-success: oklch(70% 0.16 150);
+  --color-success-foreground: oklch(98% 0 0);
+  --color-warning: oklch(85% 0.18 85);
+  --color-warning-foreground: oklch(15% 0 0);
+  --color-error: oklch(62% 0.20 20);
+  --color-error-foreground: oklch(98% 0 0);
+  --color-info: oklch(72% 0.14 220);
+  --color-info-foreground: oklch(98% 0 0);
+  
+  /* Surface Colors */
+  --color-card: oklch(98% 0 0);
+  --color-card-foreground: oklch(15% 0 0);
+  --color-popover: oklch(98% 0 0);
+  --color-popover-foreground: oklch(15% 0 0);
+  
+  /* Design Tokens */
+  --radius: 8px;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
 
-  /* Shadows (shadow-*) */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.06);
-  --shadow-md: 0 4px 10px -2px rgb(0 0 0 / 0.10);
-  --shadow-lg: 0 12px 24px -6px rgb(0 0 0 / 0.18);
+/* Dark theme CSS variables - manually applied when data-theme="dark" */
+:where([data-theme="dark"]) {
+  /* Base Colors - Dark Theme */
+  --color-background: oklch(9% 0 0);
+  --color-foreground: oklch(95% 0 0);
+  --color-muted: oklch(15% 0 0);
+  --color-muted-foreground: oklch(65% 0 0);
+  --color-border: oklch(27% 0 0);
+  
+  /* Semantic Colors - Dark Theme */
+  --color-primary: oklch(72% 0.12 255);
+  --color-primary-foreground: oklch(9% 0 0);
+  --color-secondary: oklch(74% 0.12 320);
+  --color-secondary-foreground: oklch(9% 0 0);
+  --color-success: oklch(76% 0.13 150);
+  --color-success-foreground: oklch(9% 0 0);
+  --color-warning: oklch(78% 0.16 85);
+  --color-warning-foreground: oklch(9% 0 0);
+  --color-error: oklch(68% 0.15 20);
+  --color-error-foreground: oklch(9% 0 0);
+  --color-info: oklch(78% 0.10 220);
+  --color-info-foreground: oklch(9% 0 0);
+  
+  /* Surface Colors - Dark Theme */
+  --color-card: oklch(9% 0 0);
+  --color-card-foreground: oklch(95% 0 0);
+  --color-popover: oklch(9% 0 0);
+  --color-popover-foreground: oklch(95% 0 0);
+}
+
+/* Debug styles - remove after fixing theme toggle */
+[data-theme="dark"] body {
+  background-color: oklch(9% 0 0) !important;
+  color: oklch(95% 0 0) !important;
+}
+
+[data-theme="light"] body {
+  background-color: oklch(98% 0 0) !important;
+  color: oklch(15% 0 0) !important;
 }

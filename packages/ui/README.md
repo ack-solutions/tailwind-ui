@@ -15,7 +15,7 @@ UI components for Ackplus.
 
 ## Theming
 
-Tailwind v4 tokens are provided via `@ackplus/ui/tokens.css` and a runtime theme using CSS variables. Use `text-muted`, `text-text`, `bg-surface`, etc. The legacy `.ack-muted` class has been removed in favor of `text-muted`.
+Tailwind v4 tokens are provided via `@ackplus/ui/tokens.css` and a runtime theme using CSS variables. Use utilities like `text-foreground`, `text-muted-foreground`, `bg-background`, `border-border`, and semantic colors like `bg-primary`/`text-primary-foreground`. The legacy `.ack-muted` class has been removed in favor of `text-muted-foreground`.
 
 ## Documentation
 

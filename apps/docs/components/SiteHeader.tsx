@@ -17,6 +17,9 @@ export function SiteHeader() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
+    // Also set the class for debugging
+    document.documentElement.className = theme === 'dark' ? 'dark' : '';
+    console.log('Theme changed to:', theme, 'data-theme:', document.documentElement.dataset.theme);
     try {
       localStorage.setItem("theme", theme);
     } catch {}
@@ -32,7 +35,7 @@ export function SiteHeader() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/60">
+    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center">
@@ -50,7 +53,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted hover:text-text transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               {item.label}
             </Link>
@@ -64,7 +67,7 @@ export function SiteHeader() {
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:flex items-center justify-center w-8 h-8 rounded-md text-muted hover:text-text hover:bg-surface-2 transition-colors"
+            className="hidden sm:flex items-center justify-center w-8 h-8 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             aria-label="GitHub"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -114,13 +117,13 @@ export function SiteHeader() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-surface">
+        <div className="md:hidden border-t border-border bg-background">
           <nav className="px-4 py-4 space-y-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block py-2 text-sm font-medium text-muted hover:text-text transition-colors"
+                className="block py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
@@ -129,7 +132,7 @@ export function SiteHeader() {
             <div className="pt-2 mt-2 border-t border-border">
               <Link
                 href="/storybook/index.html"
-                className="block py-2 text-sm font-medium text-muted hover:text-text transition-colors"
+                className="block py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Storybook
@@ -138,7 +141,7 @@ export function SiteHeader() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block py-2 text-sm font-medium text-muted hover:text-text transition-colors"
+                className="block py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 GitHub

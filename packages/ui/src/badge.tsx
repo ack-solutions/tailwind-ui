@@ -1,73 +1,80 @@
 import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { cn } from "./lib/cn";
-import { brandStyle, type SemanticColor } from "./lib/colors";
 
 const badgeStyles = tv({
-  slots: {
-    root: "inline-flex items-center gap-1 rounded-md border text-xs font-medium leading-none px-2.5 h-6",
-    dot: "size-1.5 rounded-full",
-    label: "truncate",
-  },
+  base: "inline-flex items-center gap-1.5 rounded-md border text-xs font-medium leading-none",
   variants: {
     variant: {
-      solid: {
-        root: "bg-brand border-brand text-[color:var(--ack-btn-fg)]",
-        dot: "bg-[color:var(--ack-btn-fg)]",
-      },
-      soft: {
-        root: "bg-surface-2/70 border-brand/30 text-brand",
-        dot: "bg-brand/50",
-      },
-      outline: {
-        root: "bg-transparent border-brand text-brand",
-        dot: "bg-brand",
-      },
+      solid: "",
+      soft: "",
+      outline: "bg-transparent",
+    },
+    color: {
+      primary: "",
+      secondary: "",
+      success: "",
+      warning: "",
+      error: "",
+      info: "",
     },
     size: {
-      sm: { root: "h-5 text-[11px] px-2", dot: "size-1.5" },
-      md: { root: "h-6 text-xs px-2.5", dot: "size-1.5" },
-      lg: { root: "h-7 text-[13px] px-3", dot: "size-2" },
-    },
-    withDot: {
-      true: {},
+      sm: "h-5 text-[11px] px-2",
+      md: "h-6 text-xs px-2.5", 
+      lg: "h-7 text-sm px-3",
     },
   },
+  compoundVariants: [
+    { variant: "solid", color: "primary", class: "bg-primary text-primary-foreground border-primary" },
+    { variant: "solid", color: "secondary", class: "bg-secondary text-secondary-foreground border-secondary" },
+    { variant: "solid", color: "success", class: "bg-success text-success-foreground border-success" },
+    { variant: "solid", color: "warning", class: "bg-warning text-warning-foreground border-warning" },
+    { variant: "solid", color: "error", class: "bg-error text-error-foreground border-error" },
+    { variant: "solid", color: "info", class: "bg-info text-info-foreground border-info" },
+
+    { variant: "soft", color: "primary", class: "bg-muted/70 text-primary border-primary/30" },
+    { variant: "soft", color: "secondary", class: "bg-muted/70 text-secondary border-secondary/30" },
+    { variant: "soft", color: "success", class: "bg-muted/70 text-success border-success/30" },
+    { variant: "soft", color: "warning", class: "bg-muted/70 text-warning border-warning/30" },
+    { variant: "soft", color: "error", class: "bg-muted/70 text-error border-error/30" },
+    { variant: "soft", color: "info", class: "bg-muted/70 text-info border-info/30" },
+
+    { variant: "outline", color: "primary", class: "text-primary border-primary" },
+    { variant: "outline", color: "secondary", class: "text-secondary border-secondary" },
+    { variant: "outline", color: "success", class: "text-success border-success" },
+    { variant: "outline", color: "warning", class: "text-warning border-warning" },
+    { variant: "outline", color: "error", class: "text-error border-error" },
+    { variant: "outline", color: "info", class: "text-info border-info" },
+  ],
   defaultVariants: {
     variant: "soft",
     size: "md",
+    color: "primary",
   },
 });
 
 export type BadgeVariant = "solid" | "soft" | "outline";
 export type BadgeSize = "sm" | "md" | "lg";
-export type BadgeColor = SemanticColor;
+export type BadgeColor = "primary" | "secondary" | "success" | "warning" | "error" | "info";
 
 type BadgeVariants = VariantProps<typeof badgeStyles>;
 
 /**
- * Badge props
+ * Badge component props
  * - variant: visual style (solid, soft, outline)
  * - size: badge size (sm, md, lg)
- * - withDot: shows a small color dot when true
- * - color: semantic color to use from the design tokens
+ * - color: semantic color (primary, secondary, success, warning, error, info)
  */
 export interface BadgeProps extends BadgeVariants {
-  /** Additional class names for the root element */
   className?: string;
-  /** Badge label content */
   children?: React.ReactNode;
-  /** Semantic color key (primary, secondary, success, warning, error, info) */
   color?: BadgeColor;
 }
 
-export function Badge({ variant, size, withDot, className, children, color }: BadgeProps) {
-  const styles = badgeStyles({ variant, size, withDot });
-  const brandOverride = brandStyle(color);
+export function Badge({ variant, size, className, children, color = "primary", ...props }: BadgeProps) {
   return (
-    <span className={cn(styles.root(), className)} style={brandOverride}>
-      {withDot ? <span aria-hidden className={styles.dot()} /> : null}
-      <span className={styles.label()}>{children}</span>
+    <span className={cn(badgeStyles({ variant, size, color }), className)} {...props}>
+      {children}
     </span>
   );
 }

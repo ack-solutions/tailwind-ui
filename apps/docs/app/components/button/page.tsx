@@ -1,151 +1,346 @@
 "use client";
+import { Button, Typography } from "@ackplus/ui";
+import { ComponentPage, Example, PropsTable } from "../../../components/ComponentLayout";
 
-import { useMemo, useState } from "react";
-import { Button } from "@ackplus/ui";
-import Link from "next/link";
-import { CodeViewer } from "../../../components/CodeViewer";
-
-type Variant = "solid" | "outline" | "ghost" | "link";
-type Size = "sm" | "md" | "lg";
-type Color = "primary" | "secondary" | "success" | "warning" | "error" | "info";
-
-export default function ButtonPlaygroundPage() {
-  const [label, setLabel] = useState("Click me");
-  const [variant, setVariant] = useState<Variant>("solid");
-  const [size, setSize] = useState<Size>("md");
-  const [fullWidth, setFullWidth] = useState(false);
-  const [asEl, setAsEl] = useState<"button" | "a">("button");
-  const [withIcon, setWithIcon] = useState(false);
-  const [color, setColor] = useState<Color>("primary");
-
-  const code = useMemo(() => {
-    const props: string[] = [];
-    if (variant !== "solid") props.push(`variant=\"${variant}\"`);
-    if (size !== "md") props.push(`size=\"${size}\"`);
-    if (fullWidth) props.push("fullWidth");
-    if (asEl === "a") props.push("as=\"a\" href=\"#\"");
-    if (withIcon) props.push("icon={<Icon />}\n  ");
-    const openTag = `<Button ${props.join(" ")}>`;
-    const inner = label || "Click me";
-    const closeTag = `</Button>`;
-    const importIcon = withIcon ? `\nfunction Icon() {\n  return (\n    <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\">\n      <path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\" />\n      <polyline points=\"22 4 12 14.01 9 11.01\" />\n    </svg>\n  );\n}\n` : "";
-    const colorProp = color !== "primary" ? ` color=\"${color}\"` : "";
-    return `import { Button } from \"@ackplus/ui\";\n${importIcon}\nexport default function Example() {\n  return (\n    ${openTag.replace("<Button", `<Button${colorProp}`)}${inner}${closeTag}\n  );\n}`;
-  }, [variant, size, fullWidth, asEl, withIcon, label, color]);
-
+export default function ButtonPage() {
   return (
-    <div>
-      <h1 className="text-2xl font-semibold">Button</h1>
-      <p className="text-muted mt-2 max-w-2xl">
-        Configure the props below to see the Button update live. Copy the code
-        snippet for quick usage.
-      </p>
+    <ComponentPage
+      title="Button"
+      description="Buttons allow users to take actions, and make choices, with a single tap. Buttons communicate actions that users can take and are typically placed throughout your UI."
+      apiReference={{
+        title: "API",
+        items: [
+          { name: "Button", href: "#button-api" }
+        ]
+      }}
+    >
+      {/* Basic Button */}
+      <Example
+        title="Basic button"
+        description="The Button comes with four variants: solid (default), outline, ghost, and link."
+        code={`import { Button } from "@ackplus/tailwind-ui";
 
-      <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <section className="border rounded p-4">
-          <h2 className="font-semibold mb-3">Controls</h2>
-          <div className="space-y-3">
-            <div>
-              <label className="block text-sm text-muted mb-1">Label</label>
-              <input
-                value={label}
-                onChange={(e) => setLabel(e.target.value)}
-                className="w-full border rounded px-3 h-9"
-                placeholder="Button label"
-              />
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              <div>
-                <label className="block text-sm text-muted mb-1">Variant</label>
-                <select
-                  value={variant}
-                  onChange={(e) => setVariant(e.target.value as Variant)}
-                  className="w-full border rounded px-2 h-9"
-                >
-                  <option value="solid">solid</option>
-                  <option value="outline">outline</option>
-                  <option value="ghost">ghost</option>
-                  <option value="link">link</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm text-muted mb-1">Size</label>
-                <select
-                  value={size}
-                  onChange={(e) => setSize(e.target.value as Size)}
-                  className="w-full border rounded px-2 h-9"
-                >
-                  <option value="sm">sm</option>
-                  <option value="md">md</option>
-                  <option value="lg">lg</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm text-muted mb-1">Color</label>
-                <select
-                  value={color}
-                  onChange={(e) => setColor(e.target.value as Color)}
-                  className="w-full border rounded px-2 h-9"
-                >
-                  <option value="primary">primary</option>
-                  <option value="secondary">secondary</option>
-                  <option value="success">success</option>
-                  <option value="warning">warning</option>
-                  <option value="error">error</option>
-                  <option value="info">info</option>
-                </select>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <label className="inline-flex items-center gap-2">
-                <input type="checkbox" checked={fullWidth} onChange={(e) => setFullWidth(e.target.checked)} />
-                <span>fullWidth</span>
-              </label>
-              <label className="inline-flex items-center gap-2">
-                <input type="checkbox" checked={withIcon} onChange={(e) => setWithIcon(e.target.checked)} />
-                <span>icon</span>
-              </label>
-              <label className="inline-flex items-center gap-2">
-                <span>as</span>
-                <select value={asEl} onChange={(e) => setAsEl(e.target.value as any)} className="border rounded px-2 h-8">
-                  <option value="button">button</option>
-                  <option value="a">a</option>
-                </select>
-              </label>
-            </div>
-          </div>
-        </section>
+export function BasicButtons() {
+  return (
+    <>
+      <Button variant="solid">Solid</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+    </>
+  );
+}`}
+      >
+        <Button variant="solid">Solid</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="link">Link</Button>
+      </Example>
 
-        <section className="lg:col-span-2">
-          <div className="border rounded p-6 bg-surface">
-            <div className="flex flex-wrap gap-3">
-              <Button
-                {...(asEl === "a" ? ({ as: "a", href: "#" } as any) : {})}
-                variant={variant}
-                size={size}
-                fullWidth={fullWidth}
-                color={color}
-                icon={withIcon ? (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                    <polyline points="22 4 12 14.01 9 11.01" />
-                  </svg>
-                ) : undefined}
-              >
-                {label || "Click me"}
-              </Button>
-            </div>
-          </div>
+      {/* Solid Button */}
+      <Example
+        title="Solid button"
+        description="Solid buttons are high-emphasis, distinguished by their use of fill color. They contain actions that are primary to your app."
+        code={`import { Button } from "@ackplus/tailwind-ui";
 
-          <div className="mt-4">
-            <CodeViewer code={code} language="typescript" />
-            <div className="mt-3 text-sm text-muted">
-              Tip: open in Storybook to explore more states {" "}
-              <Link className="text-brand underline underline-offset-4" href="/storybook/index.html?path=/story/button--primary">here</Link>.
-            </div>
-          </div>
-        </section>
-      </div>
+export function SolidButtons() {
+  return (
+    <>
+      <Button variant="solid">Primary</Button>
+      <Button variant="solid" disabled>Disabled</Button>
+      <Button variant="solid" as="a" href="#solid-buttons">Link</Button>
+    </>
+  );
+}`}
+      >
+        <Button variant="solid">Primary</Button>
+        <Button variant="solid" disabled>Disabled</Button>
+        <Button variant="solid" as="a" href="#solid-buttons">Link</Button>
+      </Example>
+
+      {/* Outline Button */}
+      <Example
+        title="Outline button"
+        description="Outline buttons are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app."
+        code={`import { Button } from "@ackplus/tailwind-ui";
+
+export function OutlineButtons() {
+  return (
+    <>
+      <Button variant="outline">Primary</Button>
+      <Button variant="outline" disabled>Disabled</Button>
+      <Button variant="outline" as="a" href="#outline-buttons">Link</Button>
+    </>
+  );
+}`}
+      >
+        <Button variant="outline">Primary</Button>
+        <Button variant="outline" disabled>Disabled</Button>
+        <Button variant="outline" as="a" href="#outline-buttons">Link</Button>
+      </Example>
+
+      {/* Ghost Button */}
+      <Example
+        title="Ghost button"
+        description="Ghost buttons are low-emphasis buttons. They are typically used for less-pronounced actions."
+        code={`import { Button } from "@ackplus/tailwind-ui";
+
+export function GhostButtons() {
+  return (
+    <>
+      <Button variant="ghost">Primary</Button>
+      <Button variant="ghost" disabled>Disabled</Button>
+      <Button variant="ghost" as="a" href="#ghost-buttons">Link</Button>
+    </>
+  );
+}`}
+      >
+        <Button variant="ghost">Primary</Button>
+        <Button variant="ghost" disabled>Disabled</Button>
+        <Button variant="ghost" as="a" href="#ghost-buttons">Link</Button>
+      </Example>
+
+      {/* Colors */}
+      <Example
+        title="Color"
+        description="Use the color prop to apply semantic colors from your theme palette."
+        code={`import { Button } from "@ackplus/tailwind-ui";
+
+export function ColorButtons() {
+  return (
+    <>
+      <Button color="primary">Primary</Button>
+      <Button color="secondary">Secondary</Button>
+      <Button variant="solid" color="success">Success</Button>
+      <Button variant="outline" color="warning">Warning</Button>
+      <Button variant="ghost" color="error">Error</Button>
+      <Button color="info">Info</Button>
+    </>
+  );
+}`}
+      >
+        <Button color="primary">Primary</Button>
+        <Button color="secondary">Secondary</Button>
+        <Button variant="solid" color="success">Success</Button>
+        <Button variant="outline" color="warning">Warning</Button>
+        <Button variant="ghost" color="error">Error</Button>
+        <Button color="info">Info</Button>
+      </Example>
+
+      {/* Sizes */}
+      <Example
+        title="Sizes"
+        description="For larger or smaller buttons, use the size prop."
+        code={`import { Button } from "@ackplus/tailwind-ui";
+
+export function ButtonSizes() {
+  return (
+    <>
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+    </>
+  );
+}`}
+      >
+        <Button size="sm">Small</Button>
+        <Button size="md">Medium</Button>
+        <Button size="lg">Large</Button>
+      </Example>
+
+      {/* Full Width */}
+      <Example
+        title="Full width"
+        description="The fullWidth prop makes the button take up the full width of its container."
+        code={`import { Button } from "@ackplus/tailwind-ui";
+
+export function FullWidthButton() {
+  return (
+    <div className="w-full max-w-md">
+      <Button fullWidth>Full width button</Button>
     </div>
+  );
+}`}
+      >
+        <div className="w-full max-w-md">
+          <Button fullWidth>Full width button</Button>
+        </div>
+      </Example>
+
+      {/* Handling clicks */}
+      <Example
+        title="Handling clicks"
+        description="All components accept an onClick handler that is applied to the root DOM element."
+        code={`import { Button } from "@ackplus/tailwind-ui";
+
+export function ClickableButton() {
+  return (
+    <Button
+      onClick={() => {
+        alert('Button clicked!');
+      }}
+    >
+      Click me
+    </Button>
+  );
+}`}
+      >
+        <Button
+          onClick={() => {
+            alert('Button clicked!');
+          }}
+        >
+          Click me
+        </Button>
+      </Example>
+
+      {/* Polymorphic Usage */}
+      <Example
+        title="Polymorphic usage"
+        description="Use the 'as' prop to render the button as any HTML element or React component."
+        code={`import { Button } from "@ackplus/tailwind-ui";
+
+export function PolymorphicButtons() {
+  return (
+    <>
+      <Button as="a" href="https://example.com" target="_blank">
+        External Link
+      </Button>
+      <Button as="div" role="button" tabIndex={0}>
+        Div Button
+      </Button>
+    </>
+  );
+}`}
+      >
+        <Button as="a" href="https://example.com" target="_blank">
+          External Link
+        </Button>
+        <Button as="div" role="button" tabIndex={0}>
+          Div Button
+        </Button>
+      </Example>
+
+      {/* Color Combinations */}
+      <Example
+        title="Variant and color combinations"
+        description="Combine different variants with semantic colors for various use cases."
+        code={`import { Button } from "@ackplus/tailwind-ui";
+
+export function VariantColorCombinations() {
+  return (
+    <div className="grid grid-cols-4 gap-4">
+      {/* Solid variants */}
+      <Button variant="solid" color="primary">Primary Solid</Button>
+      <Button variant="solid" color="success">Success Solid</Button>
+      <Button variant="solid" color="warning">Warning Solid</Button>
+      <Button variant="solid" color="error">Error Solid</Button>
+      
+      {/* Outline variants */}
+      <Button variant="outline" color="primary">Primary Outline</Button>
+      <Button variant="outline" color="success">Success Outline</Button>
+      <Button variant="outline" color="warning">Warning Outline</Button>
+      <Button variant="outline" color="error">Error Outline</Button>
+      
+      {/* Ghost variants */}
+      <Button variant="ghost" color="primary">Primary Ghost</Button>
+      <Button variant="ghost" color="success">Success Ghost</Button>
+      <Button variant="ghost" color="warning">Warning Ghost</Button>
+      <Button variant="ghost" color="error">Error Ghost</Button>
+      
+      {/* Link variants */}
+      <Button variant="link" color="primary">Primary Link</Button>
+      <Button variant="link" color="success">Success Link</Button>
+      <Button variant="link" color="warning">Warning Link</Button>
+      <Button variant="link" color="error">Error Link</Button>
+    </div>
+  );
+}`}
+      >
+        <div className="grid grid-cols-4 gap-4 w-full">
+          {/* Solid variants */}
+          <Button variant="solid" color="primary">Primary Solid</Button>
+          <Button variant="solid" color="success">Success Solid</Button>
+          <Button variant="solid" color="warning">Warning Solid</Button>
+          <Button variant="solid" color="error">Error Solid</Button>
+          
+          {/* Outline variants */}
+          <Button variant="outline" color="primary">Primary Outline</Button>
+          <Button variant="outline" color="success">Success Outline</Button>
+          <Button variant="outline" color="warning">Warning Outline</Button>
+          <Button variant="outline" color="error">Error Outline</Button>
+          
+          {/* Ghost variants */}
+          <Button variant="ghost" color="primary">Primary Ghost</Button>
+          <Button variant="ghost" color="success">Success Ghost</Button>
+          <Button variant="ghost" color="warning">Warning Ghost</Button>
+          <Button variant="ghost" color="error">Error Ghost</Button>
+          
+          {/* Link variants */}
+          <Button variant="link" color="primary">Primary Link</Button>
+          <Button variant="link" color="success">Success Link</Button>
+          <Button variant="link" color="warning">Warning Link</Button>
+          <Button variant="link" color="error">Error Link</Button>
+        </div>
+      </Example>
+
+      {/* Props Table */}
+      <PropsTable
+        title="Button Props"
+        props={[
+          {
+            name: "variant",
+            type: "'solid' | 'outline' | 'ghost' | 'link'",
+            default: "'solid'",
+            description: "The variant to use for the button appearance."
+          },
+          {
+            name: "size",
+            type: "'sm' | 'md' | 'lg'",
+            default: "'md'",
+            description: "The size of the button."
+          },
+          {
+            name: "color",
+            type: "'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info'",
+            default: "'primary'",
+            description: "The color of the button. Uses semantic colors from theme."
+          },
+          {
+            name: "fullWidth",
+            type: "boolean",
+            default: "false",
+            description: "If true, the button will take up the full width of its container."
+          },
+          {
+            name: "disabled",
+            type: "boolean",
+            default: "false",
+            description: "If true, the button will be disabled."
+          },
+          {
+            name: "as",
+            type: "React.ElementType",
+            default: "'button'",
+            description: "The component or element type to render as."
+          },
+          {
+            name: "className",
+            type: "string",
+            description: "Additional CSS classes to apply to the button."
+          },
+          {
+            name: "children",
+            type: "React.ReactNode",
+            description: "The content of the button."
+          },
+          {
+            name: "onClick",
+            type: "(event: React.MouseEvent) => void",
+            description: "Callback fired when the button is clicked."
+          }
+        ]}
+      />
+    </ComponentPage>
   );
 }

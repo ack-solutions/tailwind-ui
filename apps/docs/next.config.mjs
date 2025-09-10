@@ -1,17 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Export static site for GitHub Pages
+  // Export static site for deployment
   output: 'export',
   // Ensure Next/Image doesn't require optimization server
   images: { unoptimized: true },
-  // Host under /tailwind-ui path on GitHub Pages
-  basePath: '/tailwind-ui',
-  assetPrefix: '/tailwind-ui/',
-  // Produce folder-style routes for GitHub Pages
+  // Configure base path based on environment
+  ...(process.env.NEXT_PUBLIC_BASE_PATH && {
+    basePath: process.env.NEXT_PUBLIC_BASE_PATH,
+    assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH + '/',
+  }),
+  // Produce folder-style routes for static hosting
   trailingSlash: true,
   eslint: { ignoreDuringBuilds: true },
-  // Enable type-checking during Next build; skipLibCheck avoids lib conflicts
-  typescript: { ignoreBuildErrors: false },
+  // Enable type-checking during Next build
+  // typescript: { ignoreBuildErrors: false },
 };
 
 export default nextConfig;

@@ -4,7 +4,7 @@ import { cn } from "./lib/cn";
 import { PolymorphicComponentProps, PolymorphicRef } from "./lib/polymorphic";
 
 const typographyStyles = tv({
-  base: "text-text",
+  base: "text-foreground",
   variants: {
     variant: {
       h1: "text-4xl font-bold leading-tight tracking-tight",
@@ -29,8 +29,8 @@ const typographyStyles = tv({
       warning: "text-warning",
       error: "text-error",
       info: "text-info",
-      text: "text-text",
-      muted: "text-muted",
+      foreground: "text-foreground",
+      muted: "text-muted-foreground",
     },
     align: {
       inherit: "",
@@ -62,7 +62,7 @@ export type TypographyVariant =
 
 export type TypographyColor = 
   | "inherit" | "primary" | "secondary" | "success" 
-  | "warning" | "error" | "info" | "text" | "muted";
+  | "warning" | "error" | "info" | "foreground" | "muted";
 
 export type TypographyAlign = 
   | "inherit" | "left" | "center" | "right" | "justify";

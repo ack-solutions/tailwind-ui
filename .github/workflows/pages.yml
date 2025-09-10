@@ -33,6 +33,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: apps/docs/out
+      - env: 
+          NEXT_PUBLIC_BASE_PATH: /tailwind-ui
 
   deploy:
     needs: build

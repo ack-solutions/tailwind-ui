@@ -1,0 +1,19 @@
+@import "tailwindcss";
+@import "@ackplus/ui/tokens.css";
+@import "@ackplus/ui/styles.css";
+
+/* Align Storybook canvas and docs with runtime theme */
+:root,
+html,
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* Docs mode containers */
+.sbdocs.sbdocs-wrapper,
+.sbdocs .sbdocs-content,
+.docs-story {
+  background-color: var(--color-background) !important;
+  color: var(--color-foreground) !important;
+}

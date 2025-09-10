@@ -1,7 +1,6 @@
 import React from "react";
 import { tv, type VariantProps } from "tailwind-variants";
 import { cn } from "./lib/cn";
-import { brandStyle, type SemanticColor } from "./lib/colors";
 
 const alertStyles = tv({
   slots: {
@@ -9,74 +8,76 @@ const alertStyles = tv({
     icon: "size-5 shrink-0 mt-0.5",
     content: "min-w-0",
     title: "font-semibold",
-    description: "text-sm text-muted mt-1",
+    description: "text-sm mt-1",
   },
   variants: {
     variant: {
-      solid: {
-        root: "bg-brand text-[color:var(--ack-btn-fg)] border-brand",
-        title: "text-[color:var(--ack-btn-fg)]",
-        description: "text-[color:oklch(0.96_0_0)]",
-        icon: "text-[color:var(--ack-btn-fg)]",
-      },
-      soft: {
-        root: "bg-surface-2/70 text-text border-brand/40",
-        icon: "text-brand",
-        title: "text-text",
-      },
-      outline: {
-        root: "bg-transparent text-text border-brand",
-        icon: "text-brand",
-        title: "text-text",
-      },
+      solid: { root: "", title: "", description: "", icon: "" },
+      soft: { root: "", title: "text-foreground", description: "text-muted-foreground", icon: "" },
+      outline: { root: "bg-transparent text-foreground", title: "text-foreground", description: "text-muted-foreground", icon: "" },
+    },
+    color: {
+      primary: {},
+      secondary: {},
+      success: {},
+      warning: {},
+      error: {},
+      info: {},
     },
   },
-  defaultVariants: { variant: "soft" },
+  compoundVariants: [
+    // Solid per color
+    { variant: "solid", color: "primary", class: { root: "bg-primary text-primary-foreground border-primary", title: "text-primary-foreground", description: "text-primary-foreground/90", icon: "text-primary-foreground" } },
+    { variant: "solid", color: "secondary", class: { root: "bg-secondary text-secondary-foreground border-secondary", title: "text-secondary-foreground", description: "text-secondary-foreground/90", icon: "text-secondary-foreground" } },
+    { variant: "solid", color: "success", class: { root: "bg-success text-success-foreground border-success", title: "text-success-foreground", description: "text-success-foreground/90", icon: "text-success-foreground" } },
+    { variant: "solid", color: "warning", class: { root: "bg-warning text-warning-foreground border-warning", title: "text-warning-foreground", description: "text-warning-foreground/90", icon: "text-warning-foreground" } },
+    { variant: "solid", color: "error", class: { root: "bg-error text-error-foreground border-error", title: "text-error-foreground", description: "text-error-foreground/90", icon: "text-error-foreground" } },
+    { variant: "solid", color: "info", class: { root: "bg-info text-info-foreground border-info", title: "text-info-foreground", description: "text-info-foreground/90", icon: "text-info-foreground" } },
+
+    // Soft per color
+    { variant: "soft", color: "primary", class: { root: "bg-muted/70 border-primary/40", icon: "text-primary" } },
+    { variant: "soft", color: "secondary", class: { root: "bg-muted/70 border-secondary/40", icon: "text-secondary" } },
+    { variant: "soft", color: "success", class: { root: "bg-muted/70 border-success/40", icon: "text-success" } },
+    { variant: "soft", color: "warning", class: { root: "bg-muted/70 border-warning/40", icon: "text-warning" } },
+    { variant: "soft", color: "error", class: { root: "bg-muted/70 border-error/40", icon: "text-error" } },
+    { variant: "soft", color: "info", class: { root: "bg-muted/70 border-info/40", icon: "text-info" } },
+
+    // Outline per color
+    { variant: "outline", color: "primary", class: { root: "border-primary", icon: "text-primary" } },
+    { variant: "outline", color: "secondary", class: { root: "border-secondary", icon: "text-secondary" } },
+    { variant: "outline", color: "success", class: { root: "border-success", icon: "text-success" } },
+    { variant: "outline", color: "warning", class: { root: "border-warning", icon: "text-warning" } },
+    { variant: "outline", color: "error", class: { root: "border-error", icon: "text-error" } },
+    { variant: "outline", color: "info", class: { root: "border-info", icon: "text-info" } },
+  ],
+  defaultVariants: { variant: "soft", color: "primary" },
 });
 
-export type AlertTone = "solid" | "soft" | "outline";
-export type AlertColor = SemanticColor;
+export type AlertVariant = "solid" | "soft" | "outline";
+export type AlertColor = "primary" | "secondary" | "success" | "warning" | "error" | "info";
 
 type AlertVariants = VariantProps<typeof alertStyles>;
 
 /**
- * Alert props
- * - tone: visual style (solid, soft, outline)
- * - color: semantic color to derive accent and border
- * - title: optional title row
- * - children: description/content area
- * - icon: optional leading icon
- */
-/**
- * Alert props
- * - variant: visual style (solid, soft, outline)
- * - color: semantic color for brand mapping
- * - title: optional title
- * - icon: optional leading icon
- *
- * @deprecated `tone` is deprecated. Use `variant` instead.
+ * Alert component props
+ * - variant: visual style (solid, soft, outline) 
+ * - color: semantic color (primary, secondary, success, warning, error, info)
+ * - title: optional title text or node
+ * - children: description/content below the title
+ * - icon: optional leading icon element
  */
 export interface AlertProps extends AlertVariants {
-  /** Additional class names for the root element */
   className?: string;
-  /** Optional title text or node */
   title?: React.ReactNode;
-  /** Description/content below the title */
   children?: React.ReactNode;
-  /** Optional leading icon element */
   icon?: React.ReactNode;
-  /** Semantic color key (primary, secondary, success, warning, error, info) */
   color?: AlertColor;
-  /** @deprecated Use `variant` instead */
-  tone?: AlertTone;
 }
 
-export function Alert({ tone, variant, className, title, children, icon, color }: AlertProps) {
-  const v = (variant ?? tone) as AlertTone | undefined;
-  const styles = alertStyles({ variant: v });
-  const brandOverride = brandStyle(color);
+export function Alert({ variant, className, title, children, icon, color = "primary", ...props }: AlertProps) {
+  const styles = alertStyles({ variant, color });
   return (
-    <div className={cn(styles.root(), className)} style={brandOverride}>
+    <div className={cn(styles.root(), className)} {...props}>
       {icon ? <span aria-hidden className={styles.icon()}>{icon}</span> : null}
       <div className={styles.content()}>
         {title ? <div className={styles.title()}>{title}</div> : null}

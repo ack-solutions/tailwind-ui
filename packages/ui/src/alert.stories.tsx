@@ -9,8 +9,7 @@ const meta: Meta<AlertProps> = {
   parameters: { layout: "padded" },
   argTypes: {
     variant: { control: { type: "select" }, options: ["solid", "soft", "outline"] },
-    tone: { control: false },
-    color: { control: { type: "select" }, options: ["brand", "primary", "secondary", "success", "warning", "error", "info"] },
+    color: { control: { type: "select" }, options: ["primary", "secondary", "success", "warning", "error", "info"] },
   },
   args: {
     title: "Update available",
@@ -34,7 +33,7 @@ export const Playground: Story = {};
 
 export const Colors: Story = {
   render: (args) => (
-    <div style={{ display: "grid", gap: 12 }}>
+    <div className="grid gap-3">
       <Alert {...args} color="primary" title="Primary">Info tone alert</Alert>
       <Alert {...args} color="secondary" title="Secondary">Info tone alert</Alert>
       <Alert {...args} color="success" title="Success">Action was successful</Alert>
