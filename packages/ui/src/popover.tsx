@@ -81,11 +81,19 @@ export function PopoverContent({ className, children, ...rest }: PopoverContentP
       role="dialog"
       hidden={!ctx.open}
       className={cn(
-        "absolute left-0 top-[calc(100%+6px)] z-40 min-w-48 rounded-md border border-border bg-popover text-popover-foreground p-3 shadow-md",
+        "absolute left-0 top-[calc(100%+8px)] z-50 min-w-48 rounded-lg",
+        "border border-border/20 bg-popover text-popover-foreground p-4 shadow-lg",
+        "backdrop-blur-sm transition-all duration-200 ease-in-out",
+        "transform scale-95 opacity-0 animate-in fade-in-0 zoom-in-95",
+        ctx.open ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none",
         className
       )}
       {...rest}
     >
+      <div
+        className="absolute -top-2 left-4 w-4 h-2 bg-popover border-l border-t border-border/20 rotate-45"
+        aria-hidden
+      />
       {children}
     </div>
   );

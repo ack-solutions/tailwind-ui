@@ -5,15 +5,33 @@ import { cn } from "./lib/cn";
 const cb = tv({
   slots: {
     root: "flex items-start gap-3",
-    control: "relative mt-0.5 inline-flex size-5 items-center justify-center rounded border border-border bg-background text-background ring-offset-background transition-colors data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+    control: [
+      "relative mt-0.5 inline-flex size-6 items-center justify-center rounded-md",
+      "border-2 border-border/60 bg-background text-background",
+      "transition-all duration-200 ease-in-out",
+      "data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-2",
+      "hover:border-border shadow-sm hover:shadow-md",
+      "data-[state=checked]:shadow-md data-[state=checked]:shadow-primary/25"
+    ],
     input: "peer absolute inset-0 opacity-0 cursor-pointer",
-    icon: "pointer-events-none",
-    label: "text-sm text-foreground select-none",
-    hint: "text-xs text-muted-foreground",
+    icon: "pointer-events-none opacity-0 data-[state=checked]:opacity-100 transition-opacity duration-200",
+    label: "text-sm font-medium text-foreground select-none cursor-pointer",
+    hint: "text-xs text-muted-foreground mt-1",
   },
   variants: {
-    disabled: { true: { control: "opacity-50", label: "opacity-70" } },
-    invalid: { true: { control: "border-error", hint: "text-error" } },
+    disabled: {
+      true: {
+        control: "opacity-50 cursor-not-allowed border-border/40",
+        label: "opacity-70 cursor-not-allowed"
+      }
+    },
+    invalid: {
+      true: {
+        control: "border-error focus-visible:ring-error/20",
+        hint: "text-error"
+      }
+    },
   },
 });
 

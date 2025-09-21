@@ -13,8 +13,12 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {}
 export function Navbar({ className, children, ...rest }: NavbarProps) {
   const [open, setOpen] = React.useState(false);
   return (
-    <nav className={cn("w-full h-14 border-b border-border bg-background/80 backdrop-blur", className)} {...rest}>
-      <div className="mx-auto flex h-full w-full max-w-7xl items-center gap-3 px-4 sm:px-6">
+    <nav className={cn(
+      "w-full h-16 border-b border-border/20 bg-background/95 backdrop-blur-md",
+      "shadow-sm sticky top-0 z-40",
+      className
+    )} {...rest}>
+      <div className="mx-auto flex h-full w-full max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
         <Ctx.Provider value={{ open, setOpen }}>{children}</Ctx.Provider>
       </div>
     </nav>
@@ -22,7 +26,7 @@ export function Navbar({ className, children, ...rest }: NavbarProps) {
 }
 
 export function NavbarBrand({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("font-semibold", className)} {...rest} />;
+  return <div className={cn("flex items-center gap-3 font-bold text-lg", className)} {...rest} />;
 }
 
 export function NavbarSpacer(props: React.HTMLAttributes<HTMLDivElement>) {
@@ -30,15 +34,26 @@ export function NavbarSpacer(props: React.HTMLAttributes<HTMLDivElement>) {
 }
 
 export function NavbarLinks({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("hidden md:flex items-center gap-4", className)} {...rest} />;
+  return <div className={cn("hidden md:flex items-center gap-6", className)} {...rest} />;
 }
 
 export function NavbarLink({ className, ...rest }: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
-  return <a className={cn("text-sm text-muted-foreground hover:text-foreground", className)} {...rest} />;
+  return (
+    <a
+      className={cn(
+        "text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200",
+        "relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5",
+        "after:bg-primary after:transition-all after:duration-200",
+        "hover:after:w-full",
+        className
+      )}
+      {...rest}
+    />
+  );
 }
 
 export function NavbarActions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("hidden md:flex items-center gap-2", className)} {...rest} />;
+  return <div className={cn("hidden md:flex items-center gap-3", className)} {...rest} />;
 }
 
 export function NavbarMobileToggle({ className, ...rest }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
@@ -47,7 +62,13 @@ export function NavbarMobileToggle({ className, ...rest }: React.ButtonHTMLAttri
   return (
     <button
       type="button"
-      className={cn("md:hidden inline-flex items-center gap-2 rounded-md border border-border px-2.5 py-1.5", className)}
+      className={cn(
+        "md:hidden inline-flex items-center gap-2 rounded-md border border-border/40",
+        "px-3 py-2 text-sm font-medium transition-all duration-200",
+        "hover:bg-muted/80 hover:border-border/60 hover:shadow-sm",
+        "focus-visible:ring-2 focus-visible:ring-primary/20",
+        className
+      )}
       onClick={(e) => { rest.onClick?.(e); ctx.setOpen(true); }}
       {...rest}
     >

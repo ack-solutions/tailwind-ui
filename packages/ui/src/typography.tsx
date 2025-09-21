@@ -4,31 +4,37 @@ import { cn } from "./lib/cn";
 import { PolymorphicComponentProps, PolymorphicRef } from "./lib/polymorphic";
 
 const typographyStyles = tv({
-  base: "text-foreground",
+  base: "text-foreground leading-relaxed",
   variants: {
     variant: {
-      h1: "text-4xl font-bold leading-tight tracking-tight",
-      h2: "text-3xl font-semibold leading-tight tracking-tight",
-      h3: "text-2xl font-semibold leading-snug",
-      h4: "text-xl font-semibold leading-snug",
-      h5: "text-lg font-medium leading-normal",
-      h6: "text-base font-medium leading-normal",
-      subtitle1: "text-lg leading-relaxed",
-      subtitle2: "text-base leading-relaxed",
-      body1: "text-base leading-relaxed",
-      body2: "text-sm leading-relaxed",
-      caption: "text-xs leading-normal",
-      overline: "text-xs uppercase tracking-wider font-medium leading-normal",
+      h1: [
+        "text-6xl font-bold leading-tight tracking-tight scroll-m-20",
+        "bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent"
+      ],
+      h2: [
+        "text-5xl font-bold leading-tight tracking-tight scroll-m-20",
+        "bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent"
+      ],
+      h3: "text-4xl font-semibold leading-snug tracking-tight scroll-m-20",
+      h4: "text-3xl font-semibold leading-snug tracking-tight scroll-m-20",
+      h5: "text-2xl font-semibold leading-normal tracking-tight",
+      h6: "text-xl font-semibold leading-normal tracking-tight",
+      subtitle1: "text-lg font-semibold leading-relaxed tracking-wide",
+      subtitle2: "text-base font-semibold leading-relaxed tracking-wide",
+      body1: "text-base leading-relaxed font-normal",
+      body2: "text-sm leading-relaxed font-normal",
+      caption: "text-xs leading-normal text-muted-foreground font-medium",
+      overline: "text-xs uppercase tracking-widest font-semibold leading-normal text-muted-foreground",
       inherit: "",
     },
     color: {
       inherit: "",
-      primary: "text-primary",
-      secondary: "text-secondary",
-      success: "text-success",
-      warning: "text-warning",
-      error: "text-error",
-      info: "text-info",
+      primary: "text-primary font-semibold",
+      secondary: "text-secondary font-semibold",
+      success: "text-success font-semibold",
+      warning: "text-warning font-semibold",
+      error: "text-error font-semibold",
+      info: "text-info font-semibold",
       foreground: "text-foreground",
       muted: "text-muted-foreground",
     },

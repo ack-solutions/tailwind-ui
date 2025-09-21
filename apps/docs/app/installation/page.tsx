@@ -1,49 +1,130 @@
+import { Typography, Card, Badge } from "@ackplus/ui";
 import { CodeViewer } from "../../components/CodeViewer";
 
 export default function InstallationPage() {
   return (
-    <article>
-      <h1>Installation</h1>
-      <p>
-        AckPlus UI targets Tailwind CSS v4 and React 18+. It exports CSS tokens and
-        styles that also work as plain CSS (no Tailwind plugin required), so you can
-        adopt it incrementally.
-      </p>
+    <article className="space-y-8">
+      <div className="space-y-4">
+        <Badge variant="soft" color="info">
+          Installation Guide
+        </Badge>
+        <Typography variant="h1" gutterBottom>
+          Installation
+        </Typography>
+        <Typography variant="subtitle1" color="muted">
+          Get AckPlus UI up and running in your project with these simple steps.
+        </Typography>
+      </div>
 
-      <h2>Prerequisites</h2>
-      <ul>
-        <li>React 18+ and a bundler (Vite, Next.js, etc.)</li>
-        <li>Tailwind CSS v4 for full utility parity (optional for basic usage)</li>
-      </ul>
+      <Card padding="lg" className="space-y-6">
+        <Typography variant="h2" gutterBottom>
+          Prerequisites
+        </Typography>
+        <ul className="space-y-2">
+          <li className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
+            <Typography variant="body1">React 18+ and a bundler (Vite, Next.js, etc.)</Typography>
+          </li>
+          <li className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
+            <Typography variant="body1">Tailwind CSS v4 for full utility parity (optional for basic usage)</Typography>
+          </li>
+        </ul>
+      </Card>
 
-      <h2 className="mt-6 text-2xl font-semibold">Install Package</h2>
-      <CodeViewer code={`pnpm add @ackplus/ui`} language="shell" />
+      <Card padding="lg" className="space-y-6">
+        <Typography variant="h2" gutterBottom>
+          Install Package
+        </Typography>
+        <Typography variant="body1" color="muted" className="mb-4">
+          Add AckPlus UI to your project using your preferred package manager.
+        </Typography>
+        <CodeViewer code={`# Using pnpm (recommended)
+pnpm add @ackplus/ui
 
-      <h2 className="mt-6 text-2xl font-semibold">Add Styles</h2>
-      <p>Import tokens and base styles once in your global stylesheet.</p>
-      <CodeViewer language="css" code={`/* app/globals.css or src/index.css */\n@import "@ackplus/ui/tokens.css";\n@import "@ackplus/ui/styles.css";`} />
+# Using npm
+npm install @ackplus/ui
 
-      <h2 className="mt-6 text-2xl font-semibold">Configure Theme (Optional)</h2>
-      <p>
-        Theme is controlled via <code>document.documentElement.dataset.theme</code>.
-        Use the provided <code>ThemeProvider</code> or set the attribute yourself.
-      </p>
-      <CodeViewer language="typescript" code={`import { ThemeProvider } from "@ackplus/ui";\n\nexport default function RootLayout({ children }) {\n  return (\n    <html lang=\"en\">\n      <body>\n        <ThemeProvider theme=\"light\">{children}</ThemeProvider>\n      </body>\n    </html>\n  );\n}`} />
+# Using yarn
+yarn add @ackplus/ui`} language="shell" />
+      </Card>
 
-      <h2 className="mt-6 text-2xl font-semibold">Using Components</h2>
-      <CodeViewer language="typescript" code={`import { Button } from "@ackplus/ui";\n\nexport function Toolbar() {\n  return (\n    <div className=\"flex gap-3\">\n      <Button>Save</Button>\n      <Button variant=\"outline\">Cancel</Button>\n      <Button variant=\"ghost\" size=\"sm\">Help</Button>\n    </div>\n  );\n}`} />
+      <Card padding="lg" className="space-y-6">
+        <Typography variant="h2" gutterBottom>
+          Add Styles
+        </Typography>
+        <Typography variant="body1" color="muted" className="mb-4">
+          Import tokens and base styles once in your global stylesheet. These work with
+          Tailwind v4 and are compatible with v3 as plain CSS.
+        </Typography>
+        <CodeViewer language="css" code={`/* app/globals.css or src/index.css */
+@import "tailwindcss";
+@import "@ackplus/ui/tokens.css";
+@import "@ackplus/ui/styles.css";`} />
+      </Card>
 
-      <h2>Tailwind v4 Notes</h2>
-      <ul>
-        <li>
-          Components rely on CSS variables from <code>tokens.css</code>. Ensure it is
-          imported before your app styles.
-        </li>
-        <li>
-          You can layer your own utilities and design tokens on top — the library
-          plays nicely with existing Tailwind setup.
-        </li>
-      </ul>
+      <Card padding="lg" className="space-y-6">
+        <Typography variant="h2" gutterBottom>
+          Configure Theme (Optional)
+        </Typography>
+        <Typography variant="body1" color="muted" className="mb-4">
+          Theme is controlled via <code className="font-mono text-sm bg-muted px-1 py-0.5 rounded">document.documentElement.dataset.theme</code>.
+          Use the provided <code className="font-mono text-sm bg-muted px-1 py-0.5 rounded">ThemeProvider</code> or set the attribute yourself.
+        </Typography>
+        <CodeViewer language="typescript" code={`import { ThemeProvider } from "@ackplus/ui";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <ThemeProvider theme="light">{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}`} />
+      </Card>
+
+      <Card padding="lg" className="space-y-6">
+        <Typography variant="h2" gutterBottom>
+          Using Components
+        </Typography>
+        <Typography variant="body1" color="muted" className="mb-4">
+          Import and use components in your React application.
+        </Typography>
+        <CodeViewer language="typescript" code={`import { Button } from "@ackplus/ui";
+
+export function Toolbar() {
+  return (
+    <div className="flex gap-3">
+      <Button>Save</Button>
+      <Button variant="outline">Cancel</Button>
+      <Button variant="ghost" size="sm">Help</Button>
+    </div>
+  );
+}`} />
+      </Card>
+
+      <Card padding="lg" className="space-y-6">
+        <Typography variant="h2" gutterBottom>
+          Tailwind v4 Notes
+        </Typography>
+        <ul className="space-y-3">
+          <li className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
+            <Typography variant="body2" color="muted">
+              Components rely on CSS variables from <code className="font-mono text-sm bg-muted px-1 py-0.5 rounded">tokens.css</code>.
+              Ensure it is imported before your app styles.
+            </Typography>
+          </li>
+          <li className="flex items-start gap-3">
+            <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0"></div>
+            <Typography variant="body2" color="muted">
+              You can layer your own utilities and design tokens on top — the library
+              plays nicely with existing Tailwind setup.
+            </Typography>
+          </li>
+        </ul>
+      </Card>
     </article>
   );
 }

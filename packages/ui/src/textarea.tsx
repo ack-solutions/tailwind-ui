@@ -4,21 +4,40 @@ import { cn } from "./lib/cn";
 
 const ta = tv({
   slots: {
-    root: "space-y-1",
-    label: "text-sm font-medium text-foreground",
-    control: "rounded-md border bg-background text-foreground placeholder:text-muted-foreground border-border focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2",
-    textarea: "w-full bg-transparent outline-none resize-y min-h-24 disabled:cursor-not-allowed",
-    hint: "text-xs text-muted-foreground",
+    root: "space-y-2",
+    label: "text-sm font-semibold text-foreground block",
+    control: [
+      "rounded-lg border-2 bg-background text-foreground",
+      "placeholder:text-muted-foreground/70 border-border/60",
+      "focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 focus-within:ring-offset-0",
+      "transition-all duration-200 ease-in-out",
+      "hover:border-border shadow-sm"
+    ],
+    textarea: [
+      "w-full bg-transparent outline-none resize-y min-h-24 disabled:cursor-not-allowed",
+      "text-sm font-medium p-4"
+    ],
+    hint: "text-xs text-muted-foreground mt-1",
   },
   variants: {
     size: {
-      sm: { control: "px-3 py-2 text-sm" },
-      md: { control: "px-3.5 py-2.5 text-sm" },
-      lg: { control: "px-4 py-3 text-base" },
+      sm: { control: "min-h-20", textarea: "text-xs" },
+      md: { control: "min-h-24", textarea: "text-sm" },
+      lg: { control: "min-h-32", textarea: "text-base" },
     },
     fullWidth: { true: { root: "w-full" } },
-    invalid: { true: { control: "border-error focus-within:ring-error", hint: "text-error" } },
-    disabled: { true: { control: "opacity-50 pointer-events-none bg-muted/40" } },
+    invalid: {
+      true: {
+        control: "border-error focus-within:ring-error/20 focus-within:border-error",
+        hint: "text-error"
+      }
+    },
+    disabled: {
+      true: {
+        control: "opacity-50 pointer-events-none bg-muted/40 cursor-not-allowed border-border/40",
+        textarea: "cursor-not-allowed"
+      }
+    },
   },
   defaultVariants: { size: "md" },
 });

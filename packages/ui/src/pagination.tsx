@@ -27,36 +27,65 @@ export function Pagination({ page, count, onChange, siblingCount = 1, className,
 
   return (
     <div className={cn("inline-flex items-center gap-1", className)} {...rest}>
-      <button className={btn(false)} aria-label="Previous" onClick={() => go(page - 1)} disabled={page <= 1}>
-        ‹
+      <button
+        className={cn(
+          "inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm",
+          "transition-all duration-200",
+          page <= 1
+            ? "bg-muted/50 text-muted-foreground/50 cursor-not-allowed"
+            : "bg-background border-border/60 text-foreground hover:bg-muted hover:border-border"
+        )}
+        aria-label="Previous"
+        onClick={() => go(page - 1)}
+        disabled={page <= 1}
+      >
+        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
       </button>
       <PageButton n={1} active={page === 1} onClick={() => go(1)} />
       {showStartEllipsis ? <Ellipsis /> : null}
       {pages.map((n) => (n === 1 || n === count ? null : <PageButton key={n} n={n} active={n === page} onClick={() => go(n)} />))}
       {showEndEllipsis ? <Ellipsis /> : null}
       {count > 1 ? <PageButton n={count} active={page === count} onClick={() => go(count)} /> : null}
-      <button className={btn(false)} aria-label="Next" onClick={() => go(page + 1)} disabled={page >= count}>
-        ›
+      <button
+        className={cn(
+          "inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm",
+          "transition-all duration-200",
+          page >= count
+            ? "bg-muted/50 text-muted-foreground/50 cursor-not-allowed"
+            : "bg-background border-border/60 text-foreground hover:bg-muted hover:border-border"
+        )}
+        aria-label="Next"
+        onClick={() => go(page + 1)}
+        disabled={page >= count}
+      >
+        <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
       </button>
     </div>
   );
 }
 
-function btn(active: boolean) {
-  return cn(
-    "inline-flex h-9 min-w-9 items-center justify-center rounded-md border px-2 text-sm",
-    active ? "bg-primary text-primary-foreground border-primary" : "bg-background border-border hover:bg-muted"
-  );
-}
-
 function PageButton({ n, active, onClick }: { n: number; active: boolean; onClick: () => void }) {
   return (
-    <button className={btn(active)} aria-current={active || undefined} onClick={onClick}>
+    <button
+      className={cn(
+        "inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm font-medium",
+        "transition-all duration-200",
+        active
+          ? "bg-primary text-primary-foreground border-primary shadow-sm shadow-primary/25"
+          : "bg-background border-border/60 text-foreground hover:bg-muted hover:border-border hover:shadow-sm"
+      )}
+      aria-current={active ? "page" : undefined}
+      onClick={onClick}
+    >
       {n}
     </button>
   );
 }
 
 function Ellipsis() {
-  return <span className="px-1 text-muted-foreground">…</span>;
+  return <span className="px-2 text-muted-foreground font-medium">…</span>;
 }

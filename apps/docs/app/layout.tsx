@@ -1,29 +1,29 @@
-import type { ReactNode } from "react";
-import "./globals.css";
+"use client";
+
+import { ThemeProvider } from "@ackplus/ui";
 import { SiteHeader } from "../components/SiteHeader";
 import { Sidebar } from "../components/Sidebar";
+import "./globals.css";
 
-export const metadata = {
-  title: "AckPlus UI - Modern React Components",
-  description: "A comprehensive Tailwind v4-first React component library with runtime tokens and variants",
-};
-
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="bg-background text-foreground antialiased">
-        <SiteHeader />
-        <div className="flex">
-          <Sidebar className="hidden lg:block" />
-          <main className="flex-1 max-w-none min-w-0">
-            <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
-              {children}
+        <ThemeProvider theme="light">
+          <div className="min-h-screen flex flex-col">
+            <SiteHeader />
+            <div className="flex flex-1">
+              <Sidebar />
+              <main className="flex-1 p-8 max-w-5xl mx-auto w-full">
+                {children}
+              </main>
             </div>
-          </main>
-        </div>
-        
-        {/* Mobile menu overlay for future enhancement */}
-        <div id="mobile-sidebar-overlay" className="hidden"></div>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

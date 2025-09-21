@@ -52,7 +52,10 @@ export function Accordion({ type = "single", value, defaultValue, onValueChange,
   const isOpen = (key: Key) => current.has(key);
 
   return (
-    <div className={cn("divide-y divide-border rounded-md border border-border", className)} {...rest}>
+    <div className={cn(
+      "rounded-lg border border-border/20 shadow-sm bg-background overflow-hidden",
+      className
+    )} {...rest}>
       <Ctx.Provider value={{ type, value: current, toggle, isOpen }}>{children}</Ctx.Provider>
     </div>
   );
@@ -81,15 +84,27 @@ export function AccordionTrigger({ __ak, className, children, ...rest }: Accordi
       aria-expanded={open}
       aria-controls={panelId}
       className={cn(
-        "flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium",
-        open ? "bg-muted/40" : "hover:bg-muted/30",
+        "flex w-full items-center justify-between gap-3 px-6 py-4 text-left",
+        "text-sm font-semibold text-foreground transition-all duration-200",
+        "border-b border-border/20 last:border-b-0",
+        "hover:bg-muted/50 active:bg-muted/70",
+        open && "bg-primary/5 text-primary border-primary/20",
         className
       )}
       onClick={(e) => { rest.onClick?.(e); ctx.toggle(__ak!); }}
       {...rest}
     >
       <span className="min-w-0 flex-1 truncate">{children}</span>
-      <svg className={cn("h-4 w-4 shrink-0 transition-transform", open ? "rotate-180" : "rotate-0")} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg
+        className={cn(
+          "h-5 w-5 shrink-0 transition-all duration-300 ease-in-out",
+          open ? "rotate-180 text-primary" : "rotate-0 text-muted-foreground"
+        )}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
         <path d="M6 9l6 6 6-6" />
       </svg>
     </button>
@@ -103,8 +118,19 @@ export function AccordionContent({ __ak, className, children, ...rest }: Accordi
   const open = ctx.isOpen(__ak!);
   const id = `acc-${__ak}-panel`;
   return (
-    <div id={id} hidden={!open} className={cn("px-4 py-3 text-sm text-foreground/90", className)} {...rest}>
-      {children}
+    <div
+      id={id}
+      hidden={!open}
+      className={cn(
+        "overflow-hidden transition-all duration-300 ease-in-out",
+        open ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
+        className
+      )}
+      {...rest}
+    >
+      <div className="px-4 py-4 text-sm text-foreground/90 leading-relaxed">
+        {children}
+      </div>
     </div>
   );
 }

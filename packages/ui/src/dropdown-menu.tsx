@@ -16,8 +16,16 @@ export function DropdownMenuTrigger(props: DropdownMenuTriggerProps) {
 export interface DropdownMenuContentProps extends React.ComponentProps<typeof PopoverContent> {}
 export function DropdownMenuContent({ className, children, ...rest }: DropdownMenuContentProps) {
   return (
-    <PopoverContent className={cn("p-1 min-w-40", className)} role="menu" {...rest}>
-      <div className="flex flex-col">{children}</div>
+    <PopoverContent
+      className={cn(
+        "p-2 min-w-48 rounded-lg border border-border/20 shadow-lg",
+        "bg-popover text-popover-foreground backdrop-blur-sm",
+        className
+      )}
+      role="menu"
+      {...rest}
+    >
+      <div className="flex flex-col gap-1">{children}</div>
     </PopoverContent>
   );
 }
@@ -30,9 +38,11 @@ export function DropdownMenuItem({ className, inset, children, ...rest }: Dropdo
     <button
       role="menuitem"
       className={cn(
-        "flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-sm text-foreground",
-        "hover:bg-muted focus:bg-muted focus:outline-none",
-        inset && "pl-8",
+        "flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium",
+        "text-foreground transition-all duration-200",
+        "hover:bg-muted/80 hover:shadow-sm focus:bg-muted/80 focus:outline-none",
+        "focus-visible:ring-2 focus-visible:ring-primary/20",
+        inset && "pl-9",
         className
       )}
       {...rest}
@@ -43,6 +53,11 @@ export function DropdownMenuItem({ className, inset, children, ...rest }: Dropdo
 }
 
 export function DropdownMenuSeparator() {
-  return <div className="my-1 h-px bg-border" role="separator" />;
+  return (
+    <div
+      className="my-2 h-px bg-gradient-to-r from-transparent via-border/40 to-transparent"
+      role="separator"
+    />
+  );
 }
 

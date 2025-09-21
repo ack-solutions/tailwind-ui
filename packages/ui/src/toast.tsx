@@ -61,22 +61,28 @@ export function ToastViewport({ className, ...rest }: ToastViewportProps) {
   const { toasts, dismiss } = useToast();
   return (
     <Portal>
-      <div className={cn("fixed bottom-4 right-4 z-[60] flex w-80 flex-col gap-2", className)} {...rest}>
+      <div className={cn("fixed bottom-4 right-4 z-[60] flex w-96 flex-col gap-3", className)} {...rest}>
         {toasts.map((t) => (
           <div
             key={t.id}
             className={cn(
-              "rounded-md border px-3 py-2 shadow-md bg-background text-foreground border-border",
+              "rounded-xl border-2 px-4 py-3 shadow-lg bg-background text-foreground",
+              "transition-all duration-300 ease-in-out transform translate-x-full animate-in slide-in-from-right-full",
               variantClass(t.variant)
             )}
           >
-            <div className="flex items-start gap-2">
+            <div className="flex items-start gap-3">
               <div className="min-w-0 flex-1">
-                {t.title ? <div className="text-sm font-semibold">{t.title}</div> : null}
-                {t.description ? <div className="text-sm text-muted-foreground">{t.description}</div> : null}
+                {t.title ? <div className="text-sm font-bold leading-tight">{t.title}</div> : null}
+                {t.description ? <div className="text-sm text-muted-foreground mt-1 leading-relaxed">{t.description}</div> : null}
               </div>
-              <button className="text-sm text-muted-foreground hover:text-foreground" onClick={() => dismiss(t.id)}>
-                ✕
+              <button
+                className="text-sm text-muted-foreground/70 hover:text-foreground transition-colors duration-200 flex-shrink-0"
+                onClick={() => dismiss(t.id)}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
               </button>
             </div>
           </div>
@@ -89,15 +95,15 @@ export function ToastViewport({ className, ...rest }: ToastViewportProps) {
 function variantClass(v: ToastVariant) {
   switch (v) {
     case "success":
-      return "border-success/40 bg-success/10";
+      return "border-success/30 bg-success/8 text-success";
     case "warning":
-      return "border-warning/40 bg-warning/10";
+      return "border-warning/30 bg-warning/8 text-warning";
     case "error":
-      return "border-error/40 bg-error/10";
+      return "border-error/30 bg-error/8 text-error";
     case "info":
-      return "border-info/40 bg-info/10";
+      return "border-info/30 bg-info/8 text-info";
     default:
-      return "";
+      return "border-border/30 bg-muted/20";
   }
 }
 

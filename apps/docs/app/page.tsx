@@ -1,6 +1,7 @@
 import { Typography, Button, Badge, Alert } from "@ackplus/ui";
 import Link from "next/link";
 import { CodeViewer } from "../components/CodeViewer";
+import React from "react";
 
 export default function Page() {
   return (
@@ -49,8 +50,8 @@ export default function Page() {
           </Typography>
         </div>
         
-        <CodeViewer 
-          language="typescript" 
+        <CodeViewer
+          language="typescript"
           code={`import { Button, Alert, Badge } from "@ackplus/ui";
 
 export function Example() {
@@ -61,11 +62,11 @@ export function Example() {
         <Button color="secondary" variant="outline">Secondary</Button>
         <Button color="success" variant="ghost">Success</Button>
       </div>
-      
+
       <Alert color="info" title="Welcome!">
         AckPlus UI is ready to use with full TypeScript support.
       </Alert>
-      
+
       <div className="flex gap-2">
         <Badge color="primary">New</Badge>
         <Badge color="success" variant="solid">Active</Badge>
@@ -74,6 +75,28 @@ export function Example() {
     </div>
   );
 }`}
+          expandable={true}
+          preview={
+            <div className="space-y-4">
+              <div className="flex gap-3">
+                <Button color="primary">Primary</Button>
+                <Button color="secondary" variant="outline">Secondary</Button>
+                <Button color="success" variant="ghost">Success</Button>
+              </div>
+
+              <Alert color="info" title="Welcome!">
+                AckPlus UI is ready to use with full TypeScript support.
+              </Alert>
+
+              <div className="flex gap-2">
+                <Badge color="primary">New</Badge>
+                <Badge color="success" variant="solid">Active</Badge>
+                <Badge color="warning" variant="outline">Beta</Badge>
+              </div>
+            </div>
+          }
+          title="Basic Example"
+          description="Get started with AckPlus UI components in seconds"
         />
       </section>
 
@@ -177,7 +200,7 @@ export function Example() {
       </section>
 
       {/* CTA Section */}
-      <section className="text-center space-y-6 py-16 border-t border-border">
+      <section className="text-center space-y-6 py-16 border-t border-border/20">
         <div className="space-y-4">
           <Typography variant="h2" gutterBottom>
             Ready to get started?

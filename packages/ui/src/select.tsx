@@ -4,22 +4,55 @@ import { cn } from "./lib/cn";
 
 const sel = tv({
   slots: {
-    root: "space-y-1",
-    label: "text-sm font-medium text-foreground",
-    control: "relative rounded-md border bg-background text-foreground border-border focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2",
-    select: "appearance-none w-full bg-transparent outline-none disabled:cursor-not-allowed placeholder:text-muted-foreground",
-    chevron: "pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground",
-    hint: "text-xs text-muted-foreground",
+    root: "space-y-2",
+    label: "text-sm font-semibold text-foreground block",
+    control: [
+      "relative rounded-lg border-2 bg-background text-foreground",
+      "border-border/60 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 focus-within:ring-offset-0",
+      "transition-all duration-200 ease-in-out",
+      "hover:border-border shadow-sm"
+    ],
+    select: [
+      "appearance-none w-full bg-transparent outline-none disabled:cursor-not-allowed",
+      "text-sm font-medium pr-10"
+    ],
+    chevron: [
+      "pointer-events-none absolute right-3 top-1/2 -translate-y-1/2",
+      "text-muted-foreground/70 transition-colors duration-200"
+    ],
+    hint: "text-xs text-muted-foreground mt-1",
   },
   variants: {
     size: {
-      sm: { control: "h-9 px-3 text-sm", select: "h-full" },
-      md: { control: "h-10 px-3.5 text-sm", select: "h-full" },
-      lg: { control: "h-11 px-4 text-base", select: "h-full" },
+      sm: {
+        control: "h-10 px-3",
+        select: "text-xs",
+        chevron: "size-4"
+      },
+      md: {
+        control: "h-12 px-4",
+        select: "text-sm",
+        chevron: "size-5"
+      },
+      lg: {
+        control: "h-14 px-5",
+        select: "text-base",
+        chevron: "size-6"
+      },
     },
     fullWidth: { true: { root: "w-full" } },
-    invalid: { true: { control: "border-error focus-within:ring-error", hint: "text-error" } },
-    disabled: { true: { control: "opacity-50 pointer-events-none bg-muted/40" } },
+    invalid: {
+      true: {
+        control: "border-error focus-within:ring-error/20 focus-within:border-error",
+        hint: "text-error"
+      }
+    },
+    disabled: {
+      true: {
+        control: "opacity-50 pointer-events-none bg-muted/40 cursor-not-allowed border-border/40",
+        select: "cursor-not-allowed"
+      }
+    },
   },
   defaultVariants: { size: "md" },
 });

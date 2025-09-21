@@ -6,15 +6,17 @@ import { PolymorphicComponentProps, PolymorphicRef } from "./lib/polymorphic";
 const buttonStyles = tv({
   base: [
     "inline-flex items-center justify-center gap-2",
-    "border font-semibold transition-colors",
-    "disabled:opacity-50 disabled:pointer-events-none",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+    "border font-semibold transition-all duration-200 ease-in-out",
+    "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+    "active:scale-[0.98]",
+    "select-none"
   ],
   variants: {
     variant: {
-      solid: "",
-      outline: "bg-transparent",
-      ghost: "border-transparent",
+      solid: "shadow-sm",
+      outline: "bg-transparent shadow-sm",
+      ghost: "border-transparent shadow-none",
       link: "border-0 shadow-none p-0 h-auto underline underline-offset-4",
     },
     color: {
@@ -26,46 +28,46 @@ const buttonStyles = tv({
       info: "",
     },
     size: {
-      sm: "h-8 px-3 text-sm",
-      md: "h-10 px-4 text-sm",
-      lg: "h-11 px-6 text-base",
+      sm: "h-9 px-3 text-sm rounded-md",
+      md: "h-10 px-4 text-sm rounded-lg",
+      lg: "h-12 px-6 text-base rounded-lg",
     },
     fullWidth: {
       true: "w-full",
     },
   },
   compoundVariants: [
-    // Solid
-    { variant: "solid", color: "primary", class: "bg-primary text-primary-foreground border-primary hover:bg-primary/90" },
-    { variant: "solid", color: "secondary", class: "bg-secondary text-secondary-foreground border-secondary hover:bg-secondary/90" },
-    { variant: "solid", color: "success", class: "bg-success text-success-foreground border-success hover:bg-success/90" },
-    { variant: "solid", color: "warning", class: "bg-warning text-warning-foreground border-warning hover:bg-warning/90" },
-    { variant: "solid", color: "error", class: "bg-error text-error-foreground border-error hover:bg-error/90" },
-    { variant: "solid", color: "info", class: "bg-info text-info-foreground border-info hover:bg-info/90" },
+    // Solid - Enhanced with better shadows and hover effects
+    { variant: "solid", color: "primary", class: "bg-primary text-primary-foreground border-primary shadow-primary/25 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/30" },
+    { variant: "solid", color: "secondary", class: "bg-secondary text-secondary-foreground border-secondary shadow-secondary/25 hover:bg-secondary/90 hover:shadow-md hover:shadow-secondary/30" },
+    { variant: "solid", color: "success", class: "bg-success text-success-foreground border-success shadow-success/25 hover:bg-success/90 hover:shadow-md hover:shadow-success/30" },
+    { variant: "solid", color: "warning", class: "bg-warning text-warning-foreground border-warning shadow-warning/25 hover:bg-warning/90 hover:shadow-md hover:shadow-warning/30" },
+    { variant: "solid", color: "error", class: "bg-error text-error-foreground border-error shadow-error/25 hover:bg-error/90 hover:shadow-md hover:shadow-error/30" },
+    { variant: "solid", color: "info", class: "bg-info text-info-foreground border-info shadow-info/25 hover:bg-info/90 hover:shadow-md hover:shadow-info/30" },
 
-    // Outline
-    { variant: "outline", color: "primary", class: "border-primary text-primary hover:bg-primary hover:text-primary-foreground" },
-    { variant: "outline", color: "secondary", class: "border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground" },
-    { variant: "outline", color: "success", class: "border-success text-success hover:bg-success hover:text-success-foreground" },
-    { variant: "outline", color: "warning", class: "border-warning text-warning hover:bg-warning hover:text-warning-foreground" },
-    { variant: "outline", color: "error", class: "border-error text-error hover:bg-error hover:text-error-foreground" },
-    { variant: "outline", color: "info", class: "border-info text-info hover:bg-info hover:text-info-foreground" },
+    // Outline - Enhanced with better hover states
+    { variant: "outline", color: "primary", class: "border-primary text-primary bg-transparent hover:bg-primary/5 hover:border-primary/80 hover:text-primary/90" },
+    { variant: "outline", color: "secondary", class: "border-secondary text-secondary bg-transparent hover:bg-secondary/5 hover:border-secondary/80 hover:text-secondary/90" },
+    { variant: "outline", color: "success", class: "border-success text-success bg-transparent hover:bg-success/5 hover:border-success/80 hover:text-success/90" },
+    { variant: "outline", color: "warning", class: "border-warning text-warning bg-transparent hover:bg-warning/5 hover:border-warning/80 hover:text-warning/90" },
+    { variant: "outline", color: "error", class: "border-error text-error bg-transparent hover:bg-error/5 hover:border-error/80 hover:text-error/90" },
+    { variant: "outline", color: "info", class: "border-info text-info bg-transparent hover:bg-info/5 hover:border-info/80 hover:text-info/90" },
 
-    // Ghost
-    { variant: "ghost", color: "primary", class: "text-primary hover:bg-primary/10" },
-    { variant: "ghost", color: "secondary", class: "text-secondary hover:bg-secondary/10" },
-    { variant: "ghost", color: "success", class: "text-success hover:bg-success/10" },
-    { variant: "ghost", color: "warning", class: "text-warning hover:bg-warning/10" },
-    { variant: "ghost", color: "error", class: "text-error hover:bg-error/10" },
-    { variant: "ghost", color: "info", class: "text-info hover:bg-info/10" },
+    // Ghost - Enhanced with better background effects
+    { variant: "ghost", color: "primary", class: "text-primary hover:bg-primary/8 hover:text-primary/90" },
+    { variant: "ghost", color: "secondary", class: "text-secondary hover:bg-secondary/8 hover:text-secondary/90" },
+    { variant: "ghost", color: "success", class: "text-success hover:bg-success/8 hover:text-success/90" },
+    { variant: "ghost", color: "warning", class: "text-warning hover:bg-warning/8 hover:text-warning/90" },
+    { variant: "ghost", color: "error", class: "text-error hover:bg-error/8 hover:text-error/90" },
+    { variant: "ghost", color: "info", class: "text-info hover:bg-info/8 hover:text-info/90" },
 
-    // Link
-    { variant: "link", color: "primary", class: "text-primary hover:opacity-80" },
-    { variant: "link", color: "secondary", class: "text-secondary hover:opacity-80" },
-    { variant: "link", color: "success", class: "text-success hover:opacity-80" },
-    { variant: "link", color: "warning", class: "text-warning hover:opacity-80" },
-    { variant: "link", color: "error", class: "text-error hover:opacity-80" },
-    { variant: "link", color: "info", class: "text-info hover:opacity-80" },
+    // Link - Enhanced with better hover effects
+    { variant: "link", color: "primary", class: "text-primary hover:text-primary/80 hover:underline" },
+    { variant: "link", color: "secondary", class: "text-secondary hover:text-secondary/80 hover:underline" },
+    { variant: "link", color: "success", class: "text-success hover:text-success/80 hover:underline" },
+    { variant: "link", color: "warning", class: "text-warning hover:text-warning/80 hover:underline" },
+    { variant: "link", color: "error", class: "text-error hover:text-error/80 hover:underline" },
+    { variant: "link", color: "info", class: "text-info hover:text-info/80 hover:underline" },
   ],
   defaultVariants: {
     variant: "solid",

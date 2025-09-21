@@ -26,7 +26,7 @@ export function Grid({ cols = 12, gap, rowGap, colGap, align, justify, className
   const base = cn(
     "grid",
     `grid-cols-${cols}`,
-    gapCls("gap", gap),
+    gapCls("gap", gap || 4),
     gapCls("row-gap", rowGap),
     gapCls("col-gap", colGap),
     alignCls,

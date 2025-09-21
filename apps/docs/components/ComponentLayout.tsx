@@ -24,18 +24,19 @@ export function Example({ title, description, children, code, language = "tsx" }
           </Typography>
         )}
       </div>
-      
-      <div className="border border-border rounded-lg overflow-hidden">
-        {/* Live Example */}
-        <div className="p-6 bg-background">
+
+      <CodeViewer
+        code={code}
+        language={language}
+        expandable={true}
+        preview={
           <div className="flex flex-wrap items-center gap-4">
             {children}
           </div>
-        </div>
-        
-        {/* Code */}
-        <CodeViewer code={code} language={language} className="border-t border-border rounded-none" />
-      </div>
+        }
+        title={title}
+        description={description}
+      />
     </section>
   );
 }
@@ -71,7 +72,7 @@ export function ComponentPage({ title, description, children, apiReference }: Co
 
       {/* API Reference */}
       {apiReference && (
-        <section className="space-y-4 pt-8 border-t border-border">
+        <section className="space-y-4 pt-8 border-t border-border/20">
           <Typography variant="h2" gutterBottom>
             {apiReference.title}
           </Typography>
@@ -81,7 +82,7 @@ export function ComponentPage({ title, description, children, apiReference }: Co
           <ul className="space-y-2">
             {apiReference.items.map((item) => (
               <li key={item.name}>
-                <a 
+                <a
                   href={item.href}
                   className="text-primary hover:underline font-mono text-sm"
                 >
@@ -113,21 +114,21 @@ export function PropsTable({ title = "Props", props }: PropsTableProps) {
         {title}
       </Typography>
       <div className="overflow-x-auto">
-        <table className="w-full border border-border rounded-lg">
+        <table className="w-full border border-border/20 rounded-lg">
           <thead>
-            <tr className="border-b border-border bg-muted/30">
-              <th className="text-left p-4 font-semibold">Name</th>
-              <th className="text-left p-4 font-semibold">Type</th>
-              <th className="text-left p-4 font-semibold">Default</th>
-              <th className="text-left p-4 font-semibold">Description</th>
+            <tr className="border-b border-border/20 bg-muted/30">
+              <th className="text-left p-4 font-semibold text-foreground">Name</th>
+              <th className="text-left p-4 font-semibold text-foreground">Type</th>
+              <th className="text-left p-4 font-semibold text-foreground">Default</th>
+              <th className="text-left p-4 font-semibold text-foreground">Description</th>
             </tr>
           </thead>
           <tbody>
             {props.map((prop, index) => (
               <tr key={prop.name} className={index % 2 === 0 ? "bg-background" : "bg-muted/10"}>
                 <td className="p-4 font-mono text-sm text-primary">{prop.name}</td>
-                <td className="p-4 font-mono text-sm">{prop.type}</td>
-                <td className="p-4 font-mono text-sm">{prop.default || "-"}</td>
+                <td className="p-4 font-mono text-sm text-foreground">{prop.type}</td>
+                <td className="p-4 font-mono text-sm text-muted-foreground">{prop.default || "-"}</td>
                 <td className="p-4 text-sm text-muted-foreground">{prop.description}</td>
               </tr>
             ))}

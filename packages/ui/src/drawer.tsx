@@ -58,11 +58,21 @@ export function DrawerContent({ className, children, ...rest }: DrawerContentPro
   return (
     <Portal>
       <div className="fixed inset-0 z-50" onClick={() => ctx.setOpen(false)}>
-        <div className="absolute inset-0 bg-black/40" aria-hidden />
         <div
           className={cn(
-            "absolute top-0 h-full w-80 bg-popover text-popover-foreground border border-border shadow-xl",
-            fromLeft ? "left-0" : "right-0",
+            "absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300",
+            ctx.open ? "opacity-100" : "opacity-0"
+          )}
+          aria-hidden
+        />
+        <div
+          className={cn(
+            "absolute top-0 h-full w-96 bg-popover text-popover-foreground",
+            "border-r border-border/20 shadow-2xl backdrop-blur-md",
+            "transition-all duration-300 ease-in-out transform",
+            fromLeft
+              ? ctx.open ? "left-0 translate-x-0" : "left-0 -translate-x-full"
+              : ctx.open ? "right-0 translate-x-0" : "right-0 translate-x-full",
             className
           )}
           onClick={(e) => e.stopPropagation()}

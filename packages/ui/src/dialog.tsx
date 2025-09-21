@@ -74,10 +74,13 @@ export function DialogContent({ className, children, ...rest }: DialogContentPro
         className="fixed inset-0 z-50 flex items-center justify-center"
         onClick={() => ctx.setOpen(false)}
       >
-        <div className="absolute inset-0 bg-black/40" aria-hidden />
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300" aria-hidden />
         <div
           className={cn(
-            "relative z-10 w-[min(90vw,560px)] rounded-lg border border-border bg-popover text-popover-foreground p-6 shadow-xl",
+            "relative z-10 w-[min(90vw,560px)] rounded-2xl border border-border/50",
+            "bg-popover text-popover-foreground p-8 shadow-2xl",
+            "backdrop-blur-md transition-all duration-300 ease-out",
+            "transform scale-95 opacity-0 animate-in fade-in-0 zoom-in-95",
             className
           )}
           onClick={(e) => e.stopPropagation()}
@@ -92,11 +95,11 @@ export function DialogContent({ className, children, ...rest }: DialogContentPro
 
 export interface DialogHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 export function DialogHeader({ className, ...rest }: DialogHeaderProps) {
-  return <div className={cn("mb-4", className)} {...rest} />;
+  return <div className={cn("mb-6 space-y-2", className)} {...rest} />;
 }
 
 export interface DialogFooterProps extends React.HTMLAttributes<HTMLDivElement> {}
 export function DialogFooter({ className, ...rest }: DialogFooterProps) {
-  return <div className={cn("mt-6 flex justify-end gap-2", className)} {...rest} />;
+  return <div className={cn("mt-8 flex justify-end gap-3", className)} {...rest} />;
 }
 

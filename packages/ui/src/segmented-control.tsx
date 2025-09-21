@@ -28,7 +28,11 @@ export function SegmentedControl({ value, defaultValue, onValueChange, multiple 
   const toggle = (v: Value) => {
     const next = new Set(selected);
     if (multiple) {
-      next.has(v) ? next.delete(v) : next.add(v);
+      if (next.has(v)) {
+        next.delete(v);
+      } else {
+        next.add(v);
+      }
     } else {
       next.clear();
       next.add(v);
@@ -36,7 +40,11 @@ export function SegmentedControl({ value, defaultValue, onValueChange, multiple 
     emit(next);
   };
   return (
-    <div className={cn("inline-flex items-center gap-0.5 rounded-md border border-border p-0.5 bg-background", className)} {...rest}>
+    <div className={cn(
+      "inline-flex items-center gap-1 rounded-lg border border-border/20 p-1",
+      "bg-muted/30 shadow-sm",
+      className
+    )} {...rest}>
       <Ctx.Provider value={{ selected, toggle, multiple }}>{children}</Ctx.Provider>
     </div>
   );
@@ -51,8 +59,11 @@ export function Segment({ value, className, children, ...rest }: SegmentProps) {
     <button
       type="button"
       className={cn(
-        "px-3 py-1.5 text-sm rounded-[6px] border border-transparent",
-        active ? "bg-primary text-primary-foreground" : "hover:bg-muted",
+        "px-4 py-2 text-sm font-medium rounded-md transition-all duration-200",
+        "border border-transparent relative",
+        active
+          ? "bg-background text-foreground shadow-sm shadow-primary/10 border-border/40"
+          : "text-muted-foreground hover:bg-background/80 hover:text-foreground hover:shadow-sm",
         className
       )}
       aria-pressed={active}

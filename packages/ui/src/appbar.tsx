@@ -6,19 +6,21 @@ export function AppBar({ className, children, ...rest }: AppBarProps) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+        "sticky top-0 z-50 w-full border-b border-border/20",
+        "bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80",
+        "shadow-sm transition-all duration-200",
         className
       )}
       {...rest}
     >
-      <div className="mx-auto flex h-14 w-full max-w-7xl items-center gap-3 px-4 sm:px-6">{children}</div>
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">{children}</div>
     </header>
   );
 }
 
 export interface AppBarBrandProps extends React.HTMLAttributes<HTMLDivElement> {}
 export function AppBarBrand({ className, ...rest }: AppBarBrandProps) {
-  return <div className={cn("flex items-center gap-2 font-semibold", className)} {...rest} />;
+  return <div className={cn("flex items-center gap-3 font-bold text-lg", className)} {...rest} />;
 }
 
 export interface AppBarSpacerProps extends React.HTMLAttributes<HTMLDivElement> {}

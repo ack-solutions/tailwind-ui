@@ -4,15 +4,22 @@ import { cn } from "./lib/cn";
 
 const chipStyles = tv({
   slots: {
-    root: "inline-flex items-center gap-1 rounded-full border text-xs font-medium leading-none px-3 h-7",
+    root: [
+      "inline-flex items-center gap-2 rounded-lg",
+      "text-sm font-medium leading-none transition-all duration-200",
+      "border shadow-sm hover:shadow-md"
+    ],
     label: "truncate",
-    close: "ml-0.5 -mr-1 inline-flex items-center justify-center size-5 rounded-full hover:opacity-90",
+    close: [
+      "ml-1 -mr-1 inline-flex items-center justify-center rounded-full",
+      "hover:bg-black/10 transition-colors duration-200",
+      "opacity-70 hover:opacity-100"
+    ],
   },
   variants: {
     variant: {
-      solid: { root: "", close: "" },
-      soft: { root: "", close: "" },
-      outline: { root: "bg-transparent", close: "" },
+      filled: { root: "", close: "" },
+      outlined: { root: "bg-transparent", close: "" },
     },
     color: {
       primary: {},
@@ -23,45 +30,41 @@ const chipStyles = tv({
       info: {},
     },
     size: {
-      sm: { root: "h-6 text-[11px] px-2.5", close: "size-4" },
-      md: { root: "h-7 text-xs px-3", close: "size-5" },
-      lg: { root: "h-8 text-sm px-3.5", close: "size-5" },
+      sm: { root: "h-7 text-xs px-3", close: "size-4" },
+      md: { root: "h-8 text-sm px-3", close: "size-5" },
+      lg: { root: "h-10 text-base px-4", close: "size-6" },
     },
     withClose: { true: {} },
   },
   compoundVariants: [
-    // Solid
-    { variant: "solid", color: "primary", class: { root: "bg-primary text-primary-foreground border-primary", close: "text-primary-foreground hover:bg-white/20" } },
-    { variant: "solid", color: "secondary", class: { root: "bg-secondary text-secondary-foreground border-secondary", close: "text-secondary-foreground hover:bg-white/20" } },
-    { variant: "solid", color: "success", class: { root: "bg-success text-success-foreground border-success", close: "text-success-foreground hover:bg-white/20" } },
-    { variant: "solid", color: "warning", class: { root: "bg-warning text-warning-foreground border-warning", close: "text-warning-foreground hover:bg-black/10" } },
-    { variant: "solid", color: "error", class: { root: "bg-error text-error-foreground border-error", close: "text-error-foreground hover:bg-white/20" } },
-    { variant: "solid", color: "info", class: { root: "bg-info text-info-foreground border-info", close: "text-info-foreground hover:bg-white/20" } },
+    // Filled
+    { variant: "filled", color: "primary", class: { root: "bg-primary text-primary-foreground border-primary shadow-primary/25", close: "text-primary-foreground hover:bg-white/20" } },
+    { variant: "filled", color: "secondary", class: { root: "bg-secondary text-secondary-foreground border-secondary shadow-secondary/25", close: "text-secondary-foreground hover:bg-white/20" } },
+    { variant: "filled", color: "success", class: { root: "bg-success text-success-foreground border-success shadow-success/25", close: "text-success-foreground hover:bg-white/20" } },
+    { variant: "filled", color: "warning", class: { root: "bg-warning text-warning-foreground border-warning shadow-warning/25", close: "text-warning-foreground hover:bg-black/10" } },
+    { variant: "filled", color: "error", class: { root: "bg-error text-error-foreground border-error shadow-error/25", close: "text-error-foreground hover:bg-white/20" } },
+    { variant: "filled", color: "info", class: { root: "bg-info text-info-foreground border-info shadow-info/25", close: "text-info-foreground hover:bg-white/20" } },
 
-    // Soft
-    { variant: "soft", color: "primary", class: { root: "bg-muted/70 text-primary border-primary/30", close: "text-primary hover:bg-primary/10" } },
-    { variant: "soft", color: "secondary", class: { root: "bg-muted/70 text-secondary border-secondary/30", close: "text-secondary hover:bg-secondary/10" } },
-    { variant: "soft", color: "success", class: { root: "bg-muted/70 text-success border-success/30", close: "text-success hover:bg-success/10" } },
-    { variant: "soft", color: "warning", class: { root: "bg-muted/70 text-warning border-warning/30", close: "text-warning hover:bg-warning/10" } },
-    { variant: "soft", color: "error", class: { root: "bg-muted/70 text-error border-error/30", close: "text-error hover:bg-error/10" } },
-    { variant: "soft", color: "info", class: { root: "bg-muted/70 text-info border-info/30", close: "text-info hover:bg-info/10" } },
-
-    // Outline
-    { variant: "outline", color: "primary", class: { root: "text-primary border-primary", close: "text-primary hover:bg-primary/10" } },
-    { variant: "outline", color: "secondary", class: { root: "text-secondary border-secondary", close: "text-secondary hover:bg-secondary/10" } },
-    { variant: "outline", color: "success", class: { root: "text-success border-success", close: "text-success hover:bg-success/10" } },
-    { variant: "outline", color: "warning", class: { root: "text-warning border-warning", close: "text-warning hover:bg-warning/10" } },
-    { variant: "outline", color: "error", class: { root: "text-error border-error", close: "text-error hover:bg-error/10" } },
-    { variant: "outline", color: "info", class: { root: "text-info border-info", close: "text-info hover:bg-info/10" } },
+    // Outlined
+    { variant: "outlined", color: "primary", class: { root: "bg-transparent text-primary border-primary/40", close: "text-primary hover:bg-primary/10" } },
+    { variant: "outlined", color: "secondary", class: { root: "bg-transparent text-secondary border-secondary/40", close: "text-secondary hover:bg-secondary/10" } },
+    { variant: "outlined", color: "success", class: { root: "bg-transparent text-success border-success/40", close: "text-success hover:bg-success/10" } },
+    { variant: "outlined", color: "warning", class: { root: "bg-transparent text-warning border-warning/40", close: "text-warning hover:bg-warning/10" } },
+    { variant: "outlined", color: "error", class: { root: "bg-transparent text-error border-error/40", close: "text-error hover:bg-error/10" } },
+    { variant: "outlined", color: "info", class: { root: "bg-transparent text-info border-info/40", close: "text-info hover:bg-info/10" } },
   ],
   defaultVariants: {
-    variant: "soft",
+    variant: "filled",
     size: "md",
     color: "primary",
   },
 });
 
 type ChipVariants = VariantProps<typeof chipStyles>;
+
+export type ChipVariant = "filled" | "outlined";
+export type ChipSize = "sm" | "md" | "lg";
+export type ChipColor = "primary" | "secondary" | "success" | "warning" | "error" | "info";
 
 export interface ChipProps extends ChipVariants {
   className?: string;

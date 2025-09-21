@@ -1,18 +1,21 @@
-import { Typography, Button, Alert, Badge } from "@ackplus/ui";
+import { Typography, Button, Alert, Badge, Card } from "@ackplus/ui";
 import Link from "next/link";
 import { CodeViewer } from "../../components/CodeViewer";
 
 export default function GettingStartedPage() {
   return (
     <article className="space-y-8">
-      <div>
+      <div className="space-y-4">
+        <Badge variant="soft" color="primary">
+          Quick Start Guide
+        </Badge>
         <Typography variant="h1" gutterBottom>
           Getting Started
         </Typography>
         <Typography variant="subtitle1" color="muted">
-        AckPlus UI is a Tailwind v4-first React component library. It ships runtime
-        CSS tokens and minimal base styles so you can compose modern, themeable UIs
-        without heavy configuration.
+          AckPlus UI is a Tailwind v4-first React component library. It ships runtime
+          CSS tokens and minimal base styles so you can compose modern, themeable UIs
+          without heavy configuration.
         </Typography>
       </div>
 
@@ -25,9 +28,9 @@ export default function GettingStartedPage() {
         <Typography variant="h2" gutterBottom>
           Quick Start
         </Typography>
-        
+
         <div className="grid gap-6">
-          <div className="space-y-4">
+          <Card padding="lg" className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">1</div>
               <Typography variant="h4">Install the package</Typography>
@@ -45,7 +48,7 @@ npm install @ackplus/ui
 yarn add @ackplus/ui`} language="shell" />
           </div>
 
-          <div className="space-y-4">
+          <Card padding="lg" className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">2</div>
               <Typography variant="h4">Import styles</Typography>
@@ -60,7 +63,7 @@ yarn add @ackplus/ui`} language="shell" />
 @import "@ackplus/ui/styles.css";`} language="css" />
           </div>
 
-          <div className="space-y-4">
+          <Card padding="lg" className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">3</div>
               <Typography variant="h4">Start using components</Typography>
@@ -105,9 +108,9 @@ export default function App() {
         <Typography variant="h2" gutterBottom>
           What's Next?
         </Typography>
-        
+
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 border border-border rounded-lg space-y-3">
+          <Card padding="lg" className="space-y-3">
             <Typography variant="h5" color="primary" gutterBottom>
               Explore Components
             </Typography>
@@ -115,9 +118,9 @@ export default function App() {
               Browse our comprehensive component library with interactive examples and API documentation.
             </Typography>
             <Button as={Link} href="/components" variant="outline" size="sm">View Components →</Button>
-          </div>
-          
-          <div className="p-6 border border-border rounded-lg space-y-3">
+          </Card>
+
+          <Card padding="lg" className="space-y-3">
             <Typography variant="h5" color="secondary" gutterBottom>
               Customization Guide
             </Typography>
@@ -125,9 +128,9 @@ export default function App() {
               Learn how to customize themes, colors, and component variants to match your design system.
             </Typography>
             <Button as={Link} href="/theming" variant="outline" size="sm">Learn Theming →</Button>
-          </div>
-          
-          <div className="p-6 border border-border rounded-lg space-y-3">
+          </Card>
+
+          <Card padding="lg" className="space-y-3">
             <Typography variant="h5" color="success" gutterBottom>
               Storybook Playground
             </Typography>
@@ -135,9 +138,9 @@ export default function App() {
               Experiment with component props and see all possible variations in our interactive Storybook.
             </Typography>
             <Button as={Link} href="/storybook/index.html" variant="outline" size="sm">Open Storybook →</Button>
-          </div>
-          
-          <div className="p-6 border border-border rounded-lg space-y-3">
+          </Card>
+
+          <Card padding="lg" className="space-y-3">
             <Typography variant="h5" color="info" gutterBottom>
               Installation Details
             </Typography>
@@ -145,17 +148,17 @@ export default function App() {
               Detailed setup instructions, configuration options, and troubleshooting guide.
             </Typography>
             <Button as={Link} href="/installation" variant="outline" size="sm">View Details →</Button>
-          </div>
+          </Card>
         </div>
       </section>
 
-      <section className="space-y-4">
-        <Typography variant="h3" gutterBottom>
+      <section className="space-y-6">
+        <Typography variant="h2" gutterBottom>
           Key Features
         </Typography>
-        
+
         <div className="grid gap-4">
-          <div className="flex gap-4 p-4 border border-border rounded-lg">
+          <Card padding="md" className="flex gap-4">
             <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
               <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -169,9 +172,9 @@ export default function App() {
                 Switch themes instantly without rebuilding. CSS custom properties enable dynamic theming.
               </Typography>
             </div>
-          </div>
-          
-          <div className="flex gap-4 p-4 border border-border rounded-lg">
+          </Card>
+
+          <Card padding="md" className="flex gap-4">
             <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center shrink-0">
               <svg className="w-5 h-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -185,9 +188,9 @@ export default function App() {
                 Full TypeScript support with excellent IntelliSense and type safety out of the box.
               </Typography>
             </div>
-          </div>
-          
-          <div className="flex gap-4 p-4 border border-border rounded-lg">
+          </Card>
+
+          <Card padding="md" className="flex gap-4">
             <div className="w-10 h-10 bg-success/10 rounded-lg flex items-center justify-center shrink-0">
               <svg className="w-5 h-5 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
@@ -201,7 +204,7 @@ export default function App() {
                 Render components as any HTML element or React component using the 'as' prop.
               </Typography>
             </div>
-          </div>
+          </Card>
         </div>
       </section>
     </article>
