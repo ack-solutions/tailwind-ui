@@ -141,7 +141,7 @@
 
 /* Dark theme CSS variables - manually applied when data-theme="dark" */
 :where([data-theme="dark"]) {
-  /* Base Colors - Dark Theme */
+  /* Base Colors - Dark Theme - Improved Contrast */
   --color-background: oklch(9% 0 0);
   --color-foreground: oklch(95% 0 0);
   --color-muted: oklch(15% 0 0);
@@ -170,18 +170,14 @@
 
   /* Extended Surface Colors - Dark Theme */
   --color-input: oklch(15% 0 0);
-  --color-ring: oklch(72% 0.12 255 / 0.3);
-  --color-accent: oklch(15% 0 0);
-  --color-accent-foreground: oklch(95% 0 0);
-}
+  --color-ring: oklch(65% 0.15 262 / 0.4);
+  --color-accent: oklch(18% 0 0);
+  --color-accent-foreground: oklch(90% 0 0);
 
-/* Debug styles - remove after fixing theme toggle */
-[data-theme="dark"] body {
-  background-color: oklch(9% 0 0) !important;
-  color: oklch(95% 0 0) !important;
-}
-
-[data-theme="light"] body {
-  background-color: oklch(98% 0 0) !important;
-  color: oklch(15% 0 0) !important;
+  /* MUI-style action colors - Dark Theme */
+  --color-action-active: oklch(90% 0 0 / 0.54);
+  --color-action-hover: oklch(90% 0 0 / 0.08);
+  --color-action-selected: oklch(90% 0 0 / 0.16);
+  --color-action-disabled: oklch(90% 0 0 / 0.38);
+  --color-action-focus: oklch(90% 0 0 / 0.24);
 }
