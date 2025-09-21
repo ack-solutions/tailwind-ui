@@ -7,7 +7,7 @@ const sel = tv({
     root: "space-y-2",
     label: "text-sm font-semibold text-foreground block",
     control: [
-      "relative rounded-lg border-2 bg-background text-foreground",
+      "relative rounded border-2 bg-background text-foreground",
       "border-border/60 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 focus-within:ring-offset-0",
       "transition-all duration-200 ease-in-out",
       "hover:border-border shadow-sm"
@@ -25,18 +25,18 @@ const sel = tv({
   variants: {
     size: {
       sm: {
-        control: "h-10 px-3",
-        select: "text-xs",
+        control: "py-1.5 px-3",
+        select: "text-xs py-1.5",
         chevron: "size-4"
       },
       md: {
-        control: "h-12 px-4",
-        select: "text-sm",
+        control: "py-2.5 px-4",
+        select: "text-sm py-2.5",
         chevron: "size-5"
       },
       lg: {
-        control: "h-14 px-5",
-        select: "text-base",
+        control: "py-3 px-5",
+        select: "text-base py-3",
         chevron: "size-6"
       },
     },

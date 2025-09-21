@@ -5,7 +5,7 @@ import { cn } from "./lib/cn";
 const chipStyles = tv({
   slots: {
     root: [
-      "inline-flex items-center gap-2 rounded-lg",
+      "inline-flex items-center gap-2 rounded",
       "text-sm font-medium leading-none transition-all duration-200",
       "border shadow-sm hover:shadow-md"
     ],
@@ -30,9 +30,9 @@ const chipStyles = tv({
       info: {},
     },
     size: {
-      sm: { root: "h-7 text-xs px-3", close: "size-4" },
-      md: { root: "h-8 text-sm px-3", close: "size-5" },
-      lg: { root: "h-10 text-base px-4", close: "size-6" },
+      sm: { root: "py-1 px-2.5 text-xs", close: "size-3" },
+      md: { root: "py-1.5 px-3 text-sm", close: "size-4" },
+      lg: { root: "py-2 px-4 text-sm", close: "size-5" },
     },
     withClose: { true: {} },
   },

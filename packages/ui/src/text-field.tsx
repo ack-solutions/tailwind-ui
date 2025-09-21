@@ -7,7 +7,7 @@ const tf = tv({
     root: "space-y-2",
     label: "text-sm font-semibold text-foreground block",
     control: [
-      "flex items-center gap-3 rounded-lg border-2 bg-background text-foreground",
+      "flex items-center gap-3 rounded border-2 bg-background text-foreground",
       "placeholder:text-muted-foreground/70 border-border/60",
       "focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 focus-within:ring-offset-0",
       "transition-all duration-200 ease-in-out",
@@ -24,19 +24,19 @@ const tf = tv({
   variants: {
     size: {
       sm: {
-        control: "h-10 px-3",
+        control: "py-1.5 px-3",
         input: "text-xs",
         leading: "size-4",
         trailing: "size-4"
       },
       md: {
-        control: "h-12 px-4",
+        control: "py-2.5 px-4",
         input: "text-sm",
         leading: "size-5",
         trailing: "size-5"
       },
       lg: {
-        control: "h-14 px-5",
+        control: "py-3 px-5",
         input: "text-base",
         leading: "size-6",
         trailing: "size-6"

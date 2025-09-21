@@ -23,9 +23,9 @@ const badgeStyles = tv({
       info: "",
     },
     size: {
-      sm: "h-5 text-[10px] px-2.5 py-0.5",
-      md: "h-6 text-xs px-3 py-1",
-      lg: "h-7 text-sm px-3.5 py-1.5",
+      sm: "text-[10px] px-2 py-0.5",
+      md: "text-xs px-2.5 py-1",
+      lg: "text-sm px-3 py-1.5",
     },
   },
   compoundVariants: [

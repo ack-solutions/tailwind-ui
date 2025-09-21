@@ -29,7 +29,7 @@ export function Pagination({ page, count, onChange, siblingCount = 1, className,
     <div className={cn("inline-flex items-center gap-1", className)} {...rest}>
       <button
         className={cn(
-          "inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm",
+          "inline-flex py-2.5 px-3 items-center justify-center rounded-md border min-w-10 text-sm",
           "transition-all duration-200",
           page <= 1
             ? "bg-muted/50 text-muted-foreground/50 cursor-not-allowed"
@@ -50,7 +50,7 @@ export function Pagination({ page, count, onChange, siblingCount = 1, className,
       {count > 1 ? <PageButton n={count} active={page === count} onClick={() => go(count)} /> : null}
       <button
         className={cn(
-          "inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm",
+          "inline-flex py-2.5 px-3 items-center justify-center rounded-md border min-w-10 text-sm",
           "transition-all duration-200",
           page >= count
             ? "bg-muted/50 text-muted-foreground/50 cursor-not-allowed"
@@ -72,7 +72,7 @@ function PageButton({ n, active, onClick }: { n: number; active: boolean; onClic
   return (
     <button
       className={cn(
-        "inline-flex h-10 min-w-10 items-center justify-center rounded-md border px-3 text-sm font-medium",
+        "inline-flex py-2.5 px-3 items-center justify-center rounded-md border min-w-10 text-sm font-medium",
         "transition-all duration-200",
         active
           ? "bg-primary text-primary-foreground border-primary shadow-sm shadow-primary/25"

@@ -17,7 +17,7 @@ const buttonStyles = tv({
       solid: "shadow-sm",
       outline: "bg-transparent shadow-sm",
       ghost: "border-transparent shadow-none",
-      link: "border-0 shadow-none p-0 h-auto underline underline-offset-4",
+      link: "border-0 shadow-none underline underline-offset-4",
     },
     color: {
       primary: "",
@@ -28,15 +28,20 @@ const buttonStyles = tv({
       info: "",
     },
     size: {
-      sm: "h-9 px-3 text-sm rounded-md",
-      md: "h-10 px-4 text-sm rounded-lg",
-      lg: "h-12 px-6 text-base rounded-lg",
+      sm: "py-1 px-3 text-sm rounded-md",
+      md: "py-2 px-4 text-base rounded-md",
+      lg: "py-3 px-6 text-lg rounded-md",
     },
     fullWidth: {
       true: "w-full",
     },
   },
   compoundVariants: [
+    // Link variant size overrides to remove padding
+    { variant: "link", size: "sm", class: "py-0 px-0" },
+    { variant: "link", size: "md", class: "py-0 px-0" },
+    { variant: "link", size: "lg", class: "py-0 px-0" },
+    
     // Solid - Enhanced with better shadows and hover effects
     { variant: "solid", color: "primary", class: "bg-primary text-primary-foreground border-primary shadow-primary/25 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/30" },
     { variant: "solid", color: "secondary", class: "bg-secondary text-secondary-foreground border-secondary shadow-secondary/25 hover:bg-secondary/90 hover:shadow-md hover:shadow-secondary/30" },

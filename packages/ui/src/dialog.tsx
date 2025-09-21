@@ -77,8 +77,8 @@ export function DialogContent({ className, children, ...rest }: DialogContentPro
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300" aria-hidden />
         <div
           className={cn(
-            "relative z-10 w-[min(90vw,560px)] rounded-2xl border border-border/50",
-            "bg-popover text-popover-foreground p-8 shadow-2xl",
+            "relative z-10 w-[min(90vw,560px)] rounded-lg border border-border/50",
+            "bg-popover text-popover-foreground p-6 shadow-2xl",
             "backdrop-blur-md transition-all duration-300 ease-out",
             "transform scale-95 opacity-0 animate-in fade-in-0 zoom-in-95",
             className

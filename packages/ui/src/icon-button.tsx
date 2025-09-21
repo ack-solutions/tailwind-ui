@@ -26,9 +26,9 @@ const iconButtonStyles = tv({
       info: "",
     },
     size: {
-      sm: "size-9",
-      md: "size-10",
-      lg: "size-12",
+      sm: "p-2",
+      md: "p-2.5",
+      lg: "p-3",
     },
   },
   compoundVariants: [

@@ -128,7 +128,7 @@ export function AccordionContent({ __ak, className, children, ...rest }: Accordi
       )}
       {...rest}
     >
-      <div className="px-4 py-4 text-sm text-foreground/90 leading-relaxed">
+      <div className="px-6 py-4 text-sm text-foreground/90 leading-relaxed">
         {children}
       </div>
     </div>

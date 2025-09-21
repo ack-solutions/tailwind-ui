@@ -7,7 +7,7 @@ const ta = tv({
     root: "space-y-2",
     label: "text-sm font-semibold text-foreground block",
     control: [
-      "rounded-lg border-2 bg-background text-foreground",
+      "rounded border-2 bg-background text-foreground",
       "placeholder:text-muted-foreground/70 border-border/60",
       "focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 focus-within:ring-offset-0",
       "transition-all duration-200 ease-in-out",
